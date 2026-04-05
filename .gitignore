@@ -1,0 +1,29 @@
+# ZIM files and download data — these are large and should not be committed
+zims/
+
+# Archive folder - All the revisions I iterated through locally
+archive/
+
+# Generated list and resume files — these are runtime artifacts
+kiwix_english_best.txt
+kiwix_resume_update.txt
+
+# Log files
+kiwix_download_failures.log
+*.log
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# macOS metadata
+.DS_Store
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
