@@ -114,7 +114,4 @@ Other notable mentions from prepper communities include:
 **[Ready.gov](https://www.ready.gov)** also offers free official government preparedness PDFs, including basic emergency plans and guides.
 
 Many preppers recommend downloading these resources now and storing them offline, as internet access may not always be reliable in an emergency. Always cross-check for the latest versions, as some older links evolve or move over time.
-
-## License
-
 This project is released for personal use. No warranty is provided. Use responsibly and in accordance with [Kiwix's terms of service](https://www.kiwix.org/en/terms-of-service/).
