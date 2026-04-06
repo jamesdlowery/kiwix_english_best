@@ -1,6 +1,6 @@
 # Kiwix English Best
 
-A Python script that automates the selection, downloading, and maintenance (updates) of the best available English-language [ZIM files](https://wiki.openzim.org/wiki/ZIM_file_format) from [download.kiwix.org](https://download.kiwix.org/zim/). ZIM files are compressed offline archives used by the [Kiwix](https://www.kiwix.org) reader to browse Wikipedia, Stack Exchange, Project Gutenberg, and hundreds of other resources without an internet connection.
+A Python script that automates the selection, downloading, and maintenance of the best available English-language [ZIM files](https://wiki.openzim.org/wiki/ZIM_file_format) from [download.kiwix.org](https://download.kiwix.org/zim/). ZIM files are compressed offline archives used by the [Kiwix](https://www.kiwix.org) reader to browse Wikipedia, Stack Exchange, Project Gutenberg, and hundreds of other resources without an internet connection.
 
 ## Features
 
@@ -92,6 +92,28 @@ Full user guide available in the repository in four formats:
 - [`kiwix_english_best_user_guide.html`](kiwix_english_best_user_guide.html) — HTML
 - [`kiwix_english_best_user_guide.pdf`](kiwix_english_best_user_guide.pdf) — PDF
 - [`kiwix_english_best_user_guide.docx`](kiwix_english_best_user_guide.docx) — Word
+
+## Recommended Offline Resource Libraries
+
+Several popular prepper and survival-focused websites stand out for offering extensive collections of free downloadable materials — PDFs, manuals, guides, checklists, and military/survival documents. These are often hosted directly or curated to avoid sketchy third-party links, and many emphasize offline storage (e.g. on USB drives).
+
+Here are some of the most frequently recommended sites with large collections of downloadable content:
+
+- **[TruePrepper](https://trueprepper.com)** — Features a dedicated "Free Survival PDFs, Manuals, & Downloads" library with hundreds of hosted files, including military manuals, checklists, and survival guides. They host everything themselves for safe, direct downloads and regularly update the collection.
+
+- **[City Prepping](https://cityprepping.com)** — Offers a "Prepper's Free PDF Library" section with categorized free PDFs, including emergency quick guides, survival manuals, traditional skills resources, and links to more extensive collections. A solid starting point for building an offline electronic library.
+
+- **[The Prepared](https://theprepared.com)** — A highly regarded site for rational, research-based prepper advice, with checklists, guides, and downloadable resources. Community-focused and often recommended for practical, no-nonsense materials.
+
+Other notable mentions from prepper communities include:
+
+- Sites aggregating military and government manuals, such as those linked from **[Off Grid Survival](https://offgridsurvival.com)** or Seasoned Citizen Prepper archives, which point to large collections of free PDFs (e.g. Army Ranger Handbooks, FEMA guides).
+- **[Reddit r/PrepperFileShare](https://www.reddit.com/r/PrepperFileShare/)** — Community-driven shares where users post and discuss torrents, direct links, and massive e-libraries of survival PDFs.
+- Older but still referenced collections like **Survivor Library** and various forum download sections (e.g. [survivalistboards.com](https://www.survivalistboards.com)), though availability can vary — always verify current links.
+
+**[Ready.gov](https://www.ready.gov)** also offers free official government preparedness PDFs, including basic emergency plans and guides.
+
+Many preppers recommend downloading these resources now and storing them offline, as internet access may not always be reliable in an emergency. Always cross-check for the latest versions, as some older links evolve or move over time.
 
 ## License
 
