@@ -88,7 +88,7 @@ Example cron entry (every Sunday at 3:00 AM):
 
 Full user guide available in the repository in four formats:
 
-- [`kiwix_english_best_user_guide.md`](kiwix_english_best_user_guide.md) — Markdown
+- [`user_guide.md`](user_guide.md) — Markdown
 
 ## Recommended Offline Resource Libraries
 
