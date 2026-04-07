@@ -89,9 +89,6 @@ Example cron entry (every Sunday at 3:00 AM):
 Full user guide available in the repository in four formats:
 
 - [`kiwix_english_best_user_guide.md`](kiwix_english_best_user_guide.md) — Markdown
-- [`kiwix_english_best_user_guide.html`](kiwix_english_best_user_guide.html) — HTML
-- [`kiwix_english_best_user_guide.pdf`](kiwix_english_best_user_guide.pdf) — PDF
-- [`kiwix_english_best_user_guide.docx`](kiwix_english_best_user_guide.docx) — Word
 
 ## Recommended Offline Resource Libraries
 
@@ -110,6 +107,12 @@ Other notable mentions from prepper communities include:
 - Sites aggregating military and government manuals, such as those linked from **[Off Grid Survival](https://offgridsurvival.com)** or Seasoned Citizen Prepper archives, which point to large collections of free PDFs (e.g. Army Ranger Handbooks, FEMA guides).
 - **[Reddit r/PrepperFileShare](https://www.reddit.com/r/PrepperFileShare/)** — Community-driven shares where users post and discuss torrents, direct links, and massive e-libraries of survival PDFs.
 - Older but still referenced collections like **Survivor Library** and various forum download sections (e.g. [survivalistboards.com](https://www.survivalistboards.com)), though availability can vary — always verify current links.
+
+---
+
+## License
+
+MIT — see [`LICENSE`](LICENSE) for details.
 
 **[Ready.gov](https://www.ready.gov)** also offers free official government preparedness PDFs, including basic emergency plans and guides.
 
