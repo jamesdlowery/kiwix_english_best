@@ -107,13 +107,12 @@ Other notable mentions from prepper communities include:
 - Sites aggregating military and government manuals, such as those linked from **[Off Grid Survival](https://offgridsurvival.com)** or Seasoned Citizen Prepper archives, which point to large collections of free PDFs (e.g. Army Ranger Handbooks, FEMA guides).
 - **[Reddit r/PrepperFileShare](https://www.reddit.com/r/PrepperFileShare/)** — Community-driven shares where users post and discuss torrents, direct links, and massive e-libraries of survival PDFs.
 - Older but still referenced collections like **Survivor Library** and various forum download sections (e.g. [survivalistboards.com](https://www.survivalistboards.com)), though availability can vary — always verify current links.
+**[Ready.gov](https://www.ready.gov)** also offers free official government preparedness PDFs, including basic emergency plans and guides.
+
+Many preppers recommend downloading these resources now and storing them offline, as internet access may not always be reliable in an emergency. Always cross-check for the latest versions, as some older links evolve or move over time.
 
 ---
 
 ## License
 
 MIT — see [`LICENSE`](LICENSE) for details.
-
-**[Ready.gov](https://www.ready.gov)** also offers free official government preparedness PDFs, including basic emergency plans and guides.
-
-Many preppers recommend downloading these resources now and storing them offline, as internet access may not always be reliable in an emergency. Always cross-check for the latest versions, as some older links evolve or move over time.
