@@ -1,0 +1,9 @@
+# Kiwix English ZIM best/latest files - v20260328a
+# Generated: 2026-03-28 10:00:01
+# Total files: 3
+# Total size: 653.91 GiB
+# Format: filename|size_bytes|url|torrent_url
+
+gutenberg_en_all_2025-11.zim|221190815744|https://download.kiwix.org/zim/gutenberg/gutenberg_en_all_2025-11.zim|https://download.kiwix.org/zim/gutenberg/gutenberg_en_all_2025-11.zim.torrent
+khanacademy_en_all_2023-03.zim|180388626432|https://download.kiwix.org/zim/other/khanacademy_en_all_2023-03.zim|https://download.kiwix.org/zim/other/khanacademy_en_all_2023-03.zim.torrent
+survivorlibrary.com_en_all_2025-12.zim|252329328640|https://download.kiwix.org/zim/zimit/survivorlibrary.com_en_all_2025-12.zim|https://download.kiwix.org/zim/zimit/survivorlibrary.com_en_all_2025-12.zim.torrent

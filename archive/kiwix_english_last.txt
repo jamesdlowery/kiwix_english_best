@@ -1,0 +1,17 @@
+# Kiwix English ZIM best/latest files - v20260331f
+# Generated: 2026-03-31 13:20:25
+# Total files: 11
+# Total size: 376.86 GiB
+# Format: filename|size_bytes|url|torrent_url
+
+biologycourses_en_all_2026-03.zim|199229440|https://download.kiwix.org/zim/videos/biologycourses_en_all_2026-03.zim|https://download.kiwix.org/zim/videos/biologycourses_en_all_2026-03.zim.torrent
+coreyms_en_pandas-tutorials_2026-03.zim|173015040|https://download.kiwix.org/zim/videos/coreyms_en_pandas-tutorials_2026-03.zim|https://download.kiwix.org/zim/videos/coreyms_en_pandas-tutorials_2026-03.zim.torrent
+lost-stats.github.io_en_all_2025-12.zim|22020096|https://download.kiwix.org/zim/zimit/lost-stats.github.io_en_all_2025-12.zim|https://download.kiwix.org/zim/zimit/lost-stats.github.io_en_all_2025-12.zim.torrent
+lrnselfreliance_en_all_2026-03.zim|3972844748|https://download.kiwix.org/zim/videos/lrnselfreliance_en_all_2026-03.zim|https://download.kiwix.org/zim/videos/lrnselfreliance_en_all_2026-03.zim.torrent
+ncert-audiobooks_en_all_2025-11.zim|18253611008|https://download.kiwix.org/zim/zimit/ncert-audiobooks_en_all_2025-11.zim|https://download.kiwix.org/zim/zimit/ncert-audiobooks_en_all_2025-11.zim.torrent
+openwrt.org_en_all_2026-03.zim|745537536|https://download.kiwix.org/zim/zimit/openwrt.org_en_all_2026-03.zim|https://download.kiwix.org/zim/zimit/openwrt.org_en_all_2026-03.zim.torrent
+studio.blender.org_en_open-movies_2026-03.zim|392167424|https://download.kiwix.org/zim/videos/studio.blender.org_en_open-movies_2026-03.zim|https://download.kiwix.org/zim/videos/studio.blender.org_en_open-movies_2026-03.zim.torrent
+survivorlibrary.com_en_all_2025-12.zim|252329328640|https://download.kiwix.org/zim/zimit/survivorlibrary.com_en_all_2025-12.zim|https://download.kiwix.org/zim/zimit/survivorlibrary.com_en_all_2025-12.zim.torrent
+wiki_en_all_maxi_2026-03.zim|147849216|https://download.kiwix.org/zim/other/wiki_en_all_maxi_2026-03.zim|https://download.kiwix.org/zim/other/wiki_en_all_maxi_2026-03.zim.torrent
+wikipedia_en_all_maxi_2026-02.zim|123480309760|https://download.kiwix.org/zim/wikipedia/wikipedia_en_all_maxi_2026-02.zim|https://download.kiwix.org/zim/wikipedia/wikipedia_en_all_maxi_2026-02.zim.torrent
+www.ready.gov_en_2024-09.zim|4939212390|https://download.kiwix.org/zim/zimit/www.ready.gov_en_2024-09.zim|https://download.kiwix.org/zim/zimit/www.ready.gov_en_2024-09.zim.torrent

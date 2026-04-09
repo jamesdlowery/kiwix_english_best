@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiwix English Best — User Guide</title>
+<style>
+  :root {
+    --blue: #2563eb;
+    --dark: #1e293b;
+    --mid: #475569;
+    --light: #f1f5f9;
+    --border: #e2e8f0;
+    --green: #16a34a;
+    --amber: #d97706;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, -apple-system, sans-serif; font-size: 16px; line-height: 1.7;
+         color: var(--dark); background: #fff; max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+  h1 { font-size: 2rem; font-weight: 800; color: var(--dark); border-bottom: 3px solid var(--blue);
+       padding-bottom: 0.5rem; margin-bottom: 0.25rem; }
+  .subtitle { color: var(--mid); font-size: 0.9rem; margin-bottom: 2.5rem; }
+  h2 { font-size: 1.4rem; font-weight: 700; color: var(--blue); margin: 2.5rem 0 0.75rem;
+       padding-bottom: 0.3rem; border-bottom: 1px solid var(--border); }
+  h3 { font-size: 1.1rem; font-weight: 700; color: var(--dark); margin: 1.75rem 0 0.5rem; }
+  h4 { font-size: 1rem; font-weight: 600; color: var(--mid); margin: 1.25rem 0 0.4rem; }
+  p { margin-bottom: 0.9rem; color: var(--dark); }
+  ul, ol { margin: 0.5rem 0 1rem 1.5rem; }
+  li { margin-bottom: 0.35rem; }
+  a { color: var(--blue); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  code { font-family: 'Courier New', monospace; font-size: 0.875rem; background: var(--light);
+         border: 1px solid var(--border); border-radius: 4px; padding: 0.1em 0.4em; color: #be185d; }
+  pre { background: #1e293b; color: #e2e8f0; border-radius: 8px; padding: 1.25rem;
+        overflow-x: auto; margin: 1rem 0; font-family: 'Courier New', monospace; font-size: 0.85rem; line-height: 1.6; }
+  pre code { background: none; border: none; color: inherit; padding: 0; font-size: inherit; }
+  table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+  th { background: var(--blue); color: #fff; text-align: left; padding: 0.6rem 0.9rem; font-weight: 600; }
+  td { padding: 0.55rem 0.9rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:nth-child(even) td { background: var(--light); }
+  .toc { background: var(--light); border: 1px solid var(--border); border-radius: 8px;
+         padding: 1.25rem 1.5rem; margin-bottom: 2.5rem; }
+  .toc h2 { margin-top: 0; border-bottom: none; font-size: 1.1rem; color: var(--dark); }
+  .toc ol { margin: 0.5rem 0 0 1.25rem; }
+  .toc li { margin-bottom: 0.25rem; font-size: 0.95rem; }
+  .toc a { color: var(--blue); }
+  .note { background: #eff6ff; border-left: 4px solid var(--blue); border-radius: 0 6px 6px 0;
+          padding: 0.75rem 1rem; margin: 1rem 0; font-size: 0.95rem; }
+  .warn { background: #fffbeb; border-left: 4px solid var(--amber); border-radius: 0 6px 6px 0;
+          padding: 0.75rem 1rem; margin: 1rem 0; font-size: 0.95rem; }
+  .option-card { border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem 1.5rem;
+                 margin: 1.5rem 0; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+  .option-card h3 { margin-top: 0; color: var(--blue); font-size: 1.15rem; }
+  .badge { display: inline-block; background: var(--blue); color: #fff; font-size: 0.75rem;
+           font-weight: 700; border-radius: 4px; padding: 0.15em 0.5em; margin-right: 0.4em; vertical-align: middle; }
+  .tag-torrent { background: var(--green); }
+  .tag-http { background: var(--mid); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+  footer { margin-top: 3rem; color: var(--mid); font-size: 0.85rem; text-align: center; border-top: 1px solid var(--border); padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Kiwix English Best</h1>
+<p class="subtitle">User Guide &nbsp;·&nbsp; Version v20260403a &nbsp;·&nbsp; April 3, 2026</p>
+
+<nav class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#requirements">Requirements</a></li>
+    <li><a href="#getting-started">Getting Started</a></li>
+    <li><a href="#menu-options">Menu Options</a>
+      <ol>
+        <li><a href="#option1">Option 1 — Generate / Download New Best English ZIMs List</a></li>
+        <li><a href="#option2">Option 2 — Download / Resume from Existing List</a></li>
+        <li><a href="#option3">Option 3 — Check for Updates</a></li>
+        <li><a href="#option4">Option 4 — Cleanup ZIMs Directory</a></li>
+      </ol>
+    </li>
+    <li><a href="#cron">Non-Interactive Update Mode (Cron Jobs)</a></li>
+    <li><a href="#files">File Reference</a></li>
+    <li><a href="#downloads">Download Methods</a></li>
+    <li><a href="#progress">Progress Display</a></li>
+    <li><a href="#verification">Integrity Verification</a></li>
+    <li><a href="#tips">Tips and Troubleshooting</a></li>
+  </ol>
+</nav>
+
+<h2 id="overview">Overview</h2>
+<p><strong>Kiwix English Best</strong> is a Python script that automates the selection, downloading, and maintenance of the best available English-language ZIM files from <a href="https://download.kiwix.org/zim/">download.kiwix.org</a>. ZIM files are compressed offline archives used by the <a href="https://www.kiwix.org">Kiwix</a> reader to browse Wikipedia, Stack Exchange, Project Gutenberg, and hundreds of other resources without an internet connection.</p>
+<p>The script:</p>
+<ul>
+  <li>Crawls the Kiwix server to find the best (newest, highest-quality) English ZIM file for each content group</li>
+  <li>Downloads files using BitTorrent (via libtorrent) where available, with HTTP as a fallback</li>
+  <li>Supports resuming interrupted downloads</li>
+  <li>Verifies file integrity after download</li>
+  <li>Detects and downloads updates when newer versions are available on the server</li>
+  <li>Cleans up older duplicate versions to save disk space</li>
+</ul>
+
+<h2 id="requirements">Requirements</h2>
+<table>
+  <tr><th>Requirement</th><th>Notes</th></tr>
+  <tr><td><code>Python 3.8+</code></td><td>Required</td></tr>
+  <tr><td><code>requests</code></td><td><code>pip install requests</code></td></tr>
+  <tr><td><code>tqdm</code></td><td><code>pip install tqdm</code> (optional, for progress bars)</td></tr>
+  <tr><td><code>libtorrent</code></td><td>Optional; enables torrent downloads</td></tr>
+  <tr><td><code>zimcheck</code></td><td>Optional; enables deep ZIM integrity checking (HTTP downloads only)</td></tr>
+</table>
+<p>Install Python dependencies:</p>
+<pre><code>pip install requests tqdm</code></pre>
+<p>To enable torrent support, install libtorrent for your platform. On Debian/Ubuntu:</p>
+<pre><code>sudo apt install python3-libtorrent</code></pre>
+
+<h2 id="getting-started">Getting Started</h2>
+<p>Run the script interactively:</p>
+<pre><code>python3 kiwix_english_best.py</code></pre>
+<p>You will see the main menu:</p>
+<pre><code>Kiwix English ZIM Tool v20260403a
+
+1) Generate / download new best English ZIMs list
+2) Download / resume from existing best English ZIMs list
+3) Check for updates (new and newer ZIMs; includes cleanup)
+4) Cleanup ZIMs directory (remove older duplicate versions)
+Choose (1/2/3/4):</code></pre>
+<p>All ZIM files are stored in the <code>zims/</code> subdirectory relative to the script's location.</p>
+
+<h2 id="menu-options">Menu Options</h2>
+
+<div class="option-card" id="option1">
+  <h3>Option 1 — Generate / Download New Best English ZIMs List</h3>
+  <p><strong>When to use:</strong> First-time setup, or when you want to refresh the full best-file selection from the server.</p>
+  <h4>What it does</h4>
+  <ol>
+    <li>Crawls the Kiwix server to discover all available English ZIM files</li>
+    <li>Selects the best (newest date, then largest) file per content group, excluding unwanted variants (<code>nopic</code>, <code>mini</code>, <code>lcc-*</code>, etc.)</li>
+    <li>Saves the complete best list to <code>kiwix_english_best.txt</code> — this always happens, even if all files are already present on disk</li>
+    <li>Checks which files from the list are not yet downloaded</li>
+    <li>If files are missing, shows a space check and prompts to download</li>
+  </ol>
+  <h4>Prompts</h4>
+  <table>
+    <tr><th>Prompt</th><th>Description</th></tr>
+    <tr><td><code>Download now? (y/n)</code></td><td>Whether to start downloading the missing files</td></tr>
+    <tr><td><code>Verbose output? (y/n)</code></td><td>Verbose shows per-file progress lines; non-verbose shows a compact updating display</td></tr>
+  </table>
+  <div class="note">The list file (<code>kiwix_english_best.txt</code>) is always saved with the full best selection, regardless of what is already on disk.</div>
+</div>
+
+<div class="option-card" id="option2">
+  <h3>Option 2 — Download / Resume from Existing List</h3>
+  <p><strong>When to use:</strong> Resume a previously interrupted download session, or re-download missing files from an existing list.</p>
+  <h4>What it does</h4>
+  <ol>
+    <li>Checks whether <code>kiwix_resume_update.txt</code> exists (left by a failed Option 3 session) — if so, offers to resume those incomplete update downloads first</li>
+    <li>Otherwise loads <code>kiwix_english_best.txt</code></li>
+    <li>Filters out files already present on disk (using a size-tolerance check)</li>
+    <li>Shows a space check for remaining files</li>
+    <li>Downloads any incomplete or missing files, resuming <code>.partial</code> files where they exist</li>
+  </ol>
+  <div class="note"><strong>Tip:</strong> If a download was interrupted, simply re-run Option 2. The script automatically detects <code>.partial</code> files and resumes from where it left off.</div>
+</div>
+
+<div class="option-card" id="option3">
+  <h3>Option 3 — Check for Updates</h3>
+  <p><strong>When to use:</strong> Periodically, to download newer versions of ZIM files and pick up newly available content groups.</p>
+  <h4>What it does</h4>
+  <ol>
+    <li><strong>Checks for an incomplete previous update session</strong> — if <code>kiwix_resume_update.txt</code> exists, offers to resume it or run a fresh check</li>
+    <li><strong>Crawls the server</strong> and compares the best available version of each group against what is on disk (using content date from filenames)</li>
+    <li><strong>Reports</strong> updates (newer versions of files you have) and new groups (content you don't have yet)</li>
+    <li><strong>Checks for torrent availability</strong> for each file to download</li>
+    <li><strong>Downloads</strong> with per-file cleanup of the old version immediately after each new file completes verification</li>
+    <li><strong>Saves a resume file</strong> (<code>kiwix_resume_update.txt</code>) if any downloads fail</li>
+  </ol>
+  <h4>Prompts</h4>
+  <table>
+    <tr><th>Prompt</th><th>Description</th></tr>
+    <tr><td><code>r) Resume / n) Check for all updates</code></td><td>Only shown if <code>kiwix_resume_update.txt</code> exists</td></tr>
+    <tr><td><code>Download updates? (y/n)</code></td><td>Whether to start downloading</td></tr>
+    <tr><td><code>Verbose output? (y/n)</code></td><td>Progress display mode</td></tr>
+  </table>
+  <div class="note"><strong>Note:</strong> Option 3 uses <span class="badge tag-torrent">TORRENT</span> downloads where available, falling back to <span class="badge tag-http">HTTP</span>. Cleanup of the old version happens immediately after each file is verified.</div>
+</div>
+
+<div class="option-card" id="option4">
+  <h3>Option 4 — Cleanup ZIMs Directory</h3>
+  <p><strong>When to use:</strong> If you have accumulated older duplicate versions of ZIM files.</p>
+  <h4>What it does</h4>
+  <ol>
+    <li>Scans <code>zims/</code> for files belonging to the same content group</li>
+    <li>For each group with multiple versions, shows which file will be <strong>kept</strong> (newest date) and which will be <strong>deleted</strong></li>
+    <li>Shows the total space that will be freed</li>
+    <li>Asks for confirmation before deleting anything</li>
+  </ol>
+  <pre><code>Duplicate groups found: 2
+
+  Group 'wikipedia_en_all_maxi':
+    Keep   : wikipedia_en_all_maxi_2026-03.zim
+    Delete : wikipedia_en_all_maxi_2026-02.zim (115.00 GiB)
+
+  Group 'devdocs_en_axios':
+    Keep   : devdocs_en_axios_2026-02.zim
+    Delete : devdocs_en_axios_2025-10.zim (407.00 KiB)
+
+  2 file(s) will be deleted, freeing 115.00 GiB.
+
+Proceed with deletion? (y/n):</code></pre>
+  <div class="warn">Answering <code>n</code> cancels without touching any files.</div>
+</div>
+
+<h2 id="cron">Non-Interactive Update Mode (Cron Jobs)</h2>
+<p>The script supports a fully non-interactive update mode suitable for automated scheduling via cron or any task scheduler.</p>
+<h3>Usage</h3>
+<pre><code>python3 kiwix_english_best.py -u
+# or
+python3 kiwix_english_best.py --update</code></pre>
+<h3>Behaviour</h3>
+<ul>
+  <li><strong>Exits silently</strong> (exit code 0) if the <code>zims/</code> directory does not exist — prevents cron failure emails when the storage volume is not mounted</li>
+  <li>If <code>kiwix_resume_update.txt</code> exists, resumes the incomplete session</li>
+  <li>Otherwise crawls the server and downloads all updates and new groups</li>
+  <li>Non-verbose output — clean for log files</li>
+  <li>Exits with code 1 if there is insufficient disk space or the server crawl fails</li>
+</ul>
+<h3>Example Cron Entry</h3>
+<p>To run every Sunday at 3:00 AM and log output:</p>
+<pre><code>0 3 * * 0  python3 /path/to/kiwix_english_best.py -u >> /path/to/kiwix_cron.log 2>&1</code></pre>
+<div class="warn"><strong>Important:</strong> If your ZIM files are on an encrypted volume (e.g. VeraCrypt), the volume must already be mounted when the cron job runs. The script will exit gracefully if it is not.</div>
+
+<h2 id="files">File Reference</h2>
+<table>
+  <tr><th>File</th><th>Description</th></tr>
+  <tr><td><code>zims/</code></td><td>Directory where all ZIM files are stored</td></tr>
+  <tr><td><code>zims/*.zim</code></td><td>Completed, verified ZIM files</td></tr>
+  <tr><td><code>zims/*.zim.partial</code></td><td>Incomplete downloads — safe to leave in place; will be resumed automatically</td></tr>
+  <tr><td><code>zims/*.zim.fastresume</code></td><td>Torrent resume data — deleted automatically on completion</td></tr>
+  <tr><td><code>zims/corrupt/</code></td><td>Files that failed integrity verification</td></tr>
+  <tr><td><code>kiwix_english_best.txt</code></td><td>Full best-file list generated by Option 1</td></tr>
+  <tr><td><code>kiwix_resume_update.txt</code></td><td>Incomplete update session resume file — written by Option 3, deleted on full completion</td></tr>
+  <tr><td><code>kiwix_download_failures.log</code></td><td>Log of all download failures with timestamps and error details</td></tr>
+</table>
+<h3>List File Format</h3>
+<pre><code># Format: filename|size_human|size_bytes|url|torrent_url
+wikipedia_en_all_maxi_2026-03.zim|115.00 GiB|123456789012|https://download.kiwix.org/...|https://...torrent</code></pre>
+
+<h2 id="downloads">Download Methods</h2>
+<h3><span class="badge tag-torrent">TORRENT</span> Preferred</h3>
+<p>When a <code>.torrent</code> file is available on the Kiwix server, the script downloads via BitTorrent using libtorrent. This is faster and more reliable for large files, distributing the load across multiple peers.</p>
+<p>The progress display shows seeds, peers, and distributed copies:</p>
+<pre><code>wikipedia_en_all_maxi_2026-03.zim - Downloading  |  45.2% |  10.5 MB/s | Seeds: 24/26 | Copies: 24.05</code></pre>
+<p>Torrent downloads are piece-verified by libtorrent, so only a ZIM header check is performed after completion.</p>
+<h3><span class="badge tag-http">HTTP</span> Fallback</h3>
+<p>If no torrent is available, or if the torrent download fails, the script falls back to direct HTTP download from the Kiwix mirrors. Resume is supported via HTTP Range requests — interrupted downloads pick up from the byte offset already on disk.</p>
+
+<h2 id="progress">Progress Display</h2>
+<h3>Verbose Mode</h3>
+<p>Each active download gets its own line, updated in real time. A total progress bar appears below:</p>
+<pre><code>coreyms_en_python-tutorials_2026-04.zim - Downloading  |  78.4% |  733.5 KB/s | HTTP
+www.ready.gov_en_2024-12.zim - Downloading              |  98.3% |  6503.4 KB/s | HTTP
+Total progress:  86%|#########5 | 4.53G/5.30G [00:29:07, 2.66 MiB/s, ETA=00:04:55]</code></pre>
+<p>When a file completes, its status changes to <code>Completed</code> before disappearing from the display.</p>
+<h3>Post-Run Summary</h3>
+<pre><code>Post-run summary:
+  - Total files in list: 3
+  - Good / verified files: 585
+  - Corrupt files detected: 0
+  - Total size on disk (good files): 1.10 TiB
+  - Disk usage in ./zims/: 1.10 TiB
+
+  ⚠ Incomplete download(s) — 1 file(s) not fully downloaded:
+    www.ready.gov_en_2024-12.zim.partial (2.26 GiB on disk, 37.85 MiB remaining)
+
+    → Run option 3 to resume these downloads.</code></pre>
+
+<h2 id="verification">Integrity Verification</h2>
+<table>
+  <tr><th>Download Method</th><th>Verification</th></tr>
+  <tr><td><span class="badge tag-torrent">TORRENT</span></td><td>libtorrent piece-verification during download; ZIM magic header check on completion</td></tr>
+  <tr><td><span class="badge tag-http">HTTP</span></td><td>ZIM magic header check; <code>zimcheck -C -D</code> (structure and directory integrity) if <code>zimcheck</code> is installed</td></tr>
+</table>
+<div class="note">The <code>-I</code> flag (index check) is intentionally omitted from <code>zimcheck</code> for performance. Index integrity can be checked manually if needed: <code>zimcheck -I yourfile.zim</code></div>
+<p>Files that fail verification are moved to <code>zims/corrupt/</code> and logged to <code>kiwix_download_failures.log</code>.</p>
+
+<h2 id="tips">Tips and Troubleshooting</h2>
+<h3>A download failed — how do I resume it?</h3>
+<p>Run <strong>Option 3</strong>. If a resume file exists, you'll be offered the choice to resume the incomplete session. The <code>.partial</code> file in <code>zims/</code> will be picked up automatically.</p>
+<h3>The server crawl is very slow</h3>
+<p>The script scans each subdirectory of <code>download.kiwix.org/zim/</code> in sequence. This is normal — the server has hundreds of directories. The scan typically takes 1–3 minutes.</p>
+<h3>I see "Found 0 update(s)" but I know there are new files</h3>
+<p>Check that your on-disk files have dates in their filenames (e.g. <code>_2026-02</code>). Option 3 compares content dates parsed from filenames. Files without a recognisable date pattern will not be compared correctly.</p>
+<h3>Torrent downloads show 0 seeds</h3>
+<p>Wait a minute or two — peers are discovered gradually. If seeds remain at 0 for several minutes, the torrent may be poorly seeded. The script will fall back to HTTP if the torrent stalls.</p>
+<h3>A file ended up in zims/corrupt/</h3>
+<p>The file failed integrity verification. Run <strong>Option 3</strong> — it will detect that the completed <code>.zim</code> is missing for that group and offer it as an update. Alternatively, delete the corrupt file manually and run <strong>Option 2</strong> to re-download it.</p>
+<h3>How do I see what files are scheduled for download?</h3>
+<p>Open <code>kiwix_english_best.txt</code> in any text editor. Each line lists a filename, its human-readable size, byte size, HTTP URL, and torrent URL.</p>
+
+<footer>Kiwix English Best User Guide &nbsp;·&nbsp; v20260403a &nbsp;·&nbsp; April 3, 2026</footer>
+</body>
+</html>

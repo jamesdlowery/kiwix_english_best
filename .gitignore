@@ -1,9 +1,6 @@
 # ZIM files and download data — these are large and should not be committed
 zims/
 
-# Archive folder - All the revisions I iterated through locally
-archive/
-
 # Generated list and resume files — these are runtime artifacts
 kiwix_english_best.txt
 kiwix_resume_update.txt

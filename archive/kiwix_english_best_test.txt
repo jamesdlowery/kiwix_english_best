@@ -1,0 +1,14 @@
+# Kiwix English ZIM best/latest files - v20260323c
+# Generated: 2026-03-23 09:39:54
+# Total files: 7
+# Total size: 85.7 MB
+# Format: filename|size_bytes|url|torrent_url
+
+alpinelinux_en_all_maxi_2026-01.zim|3040870|https://download.kiwix.org/zim/other/alpinelinux_en_all_maxi_2026-01.zim|https://download.kiwix.org/zim/other/alpinelinux_en_all_maxi_2026-01.zim.invalid.torrent
+anonymousplanet.org_en_all_2026-02.zim|28311552|https://download.kiwix.org/zim/zimit/anonymousplanet.org_en_all_2026-02.zim|https://download.kiwix.org/zim/zimit/anonymousplanet.org_en_all_2026-02.zim.invalid.torrent
+balatrowiki_en_all_maxi_2026-03.zim|6396313|https://download.kiwix.org/zim/other/balatrowiki_en_all_maxi_2026-03.zim|https://download.kiwix.org/zim/other/balatrowiki_en_all_maxi_2026-03.zim.invalid.torrent
+based.cooking_en_all_2026-02.zim|15728640|https://download.kiwix.org/zim/zimit/based.cooking_en_all_2026-02.zim|https://download.kiwix.org/zim/zimit/based.cooking_en_all_2026-02.zim.invalid.torrent
+bitcoin_en_all_maxi_2021-03.zim|17825792|https://download.kiwix.org/zim/other/bitcoin_en_all_maxi_2021-03.zim|https://download.kiwix.org/zim/other/bitcoin_en_all_maxi_2021-03.zim.invalid.torrent
+bitcoin_en_all_nopic_2021-03.zim|5976883|https://download.kiwix.org/zim/other/bitcoin_en_all_nopic_2021-03.zim|https://download.kiwix.org/zim/other/bitcoin_en_all_nopic_2021-03.zim.invalid.torrent
+bogleheads_en_all_maxi_2025-11.zim|10485760|https://download.kiwix.org/zim/other/bogleheads_en_all_maxi_2025-11.zim|https://download.kiwix.org/zim/other/bogleheads_en_all_maxi_2025-11.zim.invalid.torrent
+

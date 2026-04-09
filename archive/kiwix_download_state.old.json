@@ -1,0 +1,877 @@
+[
+  {
+    "filename": "gutenberg_en_lcc-a_2026-03.zim",
+    "size_bytes": 9771050598,
+    "url": "https://download.kiwix.org/zim/gutenberg/gutenberg_en_lcc-a_2026-03.zim",
+    "torrent_url": "https://download.kiwix.org/zim/gutenberg/gutenberg_en_lcc-a_2026-03.zim.torrent",
+    "group_key": "gutenberg_en_lcc-a"
+  },
+  {
+    "filename": "gutenberg_en_lcc-d_2025-12.zim",
+    "size_bytes": 39728447488,
+    "url": "https://download.kiwix.org/zim/gutenberg/gutenberg_en_lcc-d_2025-12.zim",
+    "torrent_url": "https://download.kiwix.org/zim/gutenberg/gutenberg_en_lcc-d_2025-12.zim.torrent",
+    "group_key": "gutenberg_en_lcc-d"
+  },
+  {
+    "filename": "gutenberg_en_lcc-f_2026-03.zim",
+    "size_bytes": 9878424780,
+    "url": "https://download.kiwix.org/zim/gutenberg/gutenberg_en_lcc-f_2026-03.zim",
+    "torrent_url": "https://download.kiwix.org/zim/gutenberg/gutenberg_en_lcc-f_2026-03.zim.torrent",
+    "group_key": "gutenberg_en_lcc-f"
+  },
+  {
+    "filename": "gutenberg_en_lcc-n_2026-03.zim",
+    "size_bytes": 22548578304,
+    "url": "https://download.kiwix.org/zim/gutenberg/gutenberg_en_lcc-n_2026-03.zim",
+    "torrent_url": "https://download.kiwix.org/zim/gutenberg/gutenberg_en_lcc-n_2026-03.zim.torrent",
+    "group_key": "gutenberg_en_lcc-n"
+  },
+  {
+    "filename": "gutenberg_en_lcc-q_2026-03.zim",
+    "size_bytes": 18253611008,
+    "url": "https://download.kiwix.org/zim/gutenberg/gutenberg_en_lcc-q_2026-03.zim",
+    "torrent_url": "https://download.kiwix.org/zim/gutenberg/gutenberg_en_lcc-q_2026-03.zim.torrent",
+    "group_key": "gutenberg_en_lcc-q"
+  },
+  {
+    "filename": "gutenberg_en_lcc-t_2026-03.zim",
+    "size_bytes": 12884901888,
+    "url": "https://download.kiwix.org/zim/gutenberg/gutenberg_en_lcc-t_2026-03.zim",
+    "torrent_url": "https://download.kiwix.org/zim/gutenberg/gutenberg_en_lcc-t_2026-03.zim.torrent",
+    "group_key": "gutenberg_en_lcc-t"
+  },
+  {
+    "filename": "khanacademy_en_all_2023-03.zim",
+    "size_bytes": 180388626432,
+    "url": "https://download.kiwix.org/zim/other/khanacademy_en_all_2023-03.zim",
+    "torrent_url": "https://download.kiwix.org/zim/other/khanacademy_en_all_2023-03.zim.torrent",
+    "group_key": "khanacademy_en_all"
+  },
+  {
+    "filename": "mdwiki_en_all_2025-11.zim",
+    "size_bytes": 10737418240,
+    "url": "https://download.kiwix.org/zim/other/mdwiki_en_all_2025-11.zim",
+    "torrent_url": "https://download.kiwix.org/zim/other/mdwiki_en_all_2025-11.zim.torrent",
+    "group_key": "mdwiki_en_all"
+  },
+  {
+    "filename": "ncert-audiobooks_en_all_2025-11.zim",
+    "size_bytes": 18253611008,
+    "url": "https://download.kiwix.org/zim/zimit/ncert-audiobooks_en_all_2025-11.zim",
+    "torrent_url": "https://download.kiwix.org/zim/zimit/ncert-audiobooks_en_all_2025-11.zim.torrent",
+    "group_key": "ncert-audiobooks_en_all"
+  },
+  {
+    "filename": "ragajunglism.org_en_all_2025-05.zim",
+    "size_bytes": 8912057139,
+    "url": "https://download.kiwix.org/zim/zimit/ragajunglism.org_en_all_2025-05.zim",
+    "torrent_url": "https://download.kiwix.org/zim/zimit/ragajunglism.org_en_all_2025-05.zim.torrent",
+    "group_key": "ragajunglism.org_en_all"
+  },
+  {
+    "filename": "skin-of-color-society_en_all_2026-02.zim",
+    "size_bytes": 1073741824,
+    "url": "https://download.kiwix.org/zim/other/skin-of-color-society_en_all_2026-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/other/skin-of-color-society_en_all_2026-02.zim.torrent",
+    "group_key": "skin-of-color-society_en_all"
+  },
+  {
+    "filename": "smbc-comics.com_en_2025-08.zim",
+    "size_bytes": 113246208,
+    "url": "https://download.kiwix.org/zim/zimit/smbc-comics.com_en_2025-08.zim",
+    "torrent_url": "https://download.kiwix.org/zim/zimit/smbc-comics.com_en_2025-08.zim.torrent",
+    "group_key": "smbc-comics.com_en"
+  },
+  {
+    "filename": "softwarerecs.stackexchange.com_en_all_2026-02.zim",
+    "size_bytes": 222298112,
+    "url": "https://download.kiwix.org/zim/stack_exchange/softwarerecs.stackexchange.com_en_all_2026-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/stack_exchange/softwarerecs.stackexchange.com_en_all_2026-02.zim.torrent",
+    "group_key": "softwarerecs.stackexchange.com_en_all"
+  },
+  {
+    "filename": "solana.stackexchange.com_en_all_2026-02.zim",
+    "size_bytes": 42991616,
+    "url": "https://download.kiwix.org/zim/stack_exchange/solana.stackexchange.com_en_all_2026-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/stack_exchange/solana.stackexchange.com_en_all_2026-02.zim.torrent",
+    "group_key": "solana.stackexchange.com_en_all"
+  },
+  {
+    "filename": "sound.stackexchange.com_en_all_2026-02.zim",
+    "size_bytes": 76546048,
+    "url": "https://download.kiwix.org/zim/stack_exchange/sound.stackexchange.com_en_all_2026-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/stack_exchange/sound.stackexchange.com_en_all_2026-02.zim.torrent",
+    "group_key": "sound.stackexchange.com_en_all"
+  },
+  {
+    "filename": "space.stackexchange.com_en_all_2026-02.zim",
+    "size_bytes": 398458880,
+    "url": "https://download.kiwix.org/zim/stack_exchange/space.stackexchange.com_en_all_2026-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/stack_exchange/space.stackexchange.com_en_all_2026-02.zim.torrent",
+    "group_key": "space.stackexchange.com_en_all"
+  },
+  {
+    "filename": "speedtest_en_blob-mini_2024-05.zim",
+    "size_bytes": 2097152,
+    "url": "https://download.kiwix.org/zim/wikipedia/speedtest_en_blob-mini_2024-05.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/speedtest_en_blob-mini_2024-05.zim.torrent",
+    "group_key": "speedtest_en_blob-mini"
+  },
+  {
+    "filename": "speedtest_en_blob_2024-05.zim",
+    "size_bytes": 50331648,
+    "url": "https://download.kiwix.org/zim/wikipedia/speedtest_en_blob_2024-05.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/speedtest_en_blob_2024-05.zim.torrent",
+    "group_key": "speedtest_en_blob"
+  },
+  {
+    "filename": "sports.stackexchange.com_en_all_2026-02.zim",
+    "size_bytes": 44040192,
+    "url": "https://download.kiwix.org/zim/stack_exchange/sports.stackexchange.com_en_all_2026-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/stack_exchange/sports.stackexchange.com_en_all_2026-02.zim.torrent",
+    "group_key": "sports.stackexchange.com_en_all"
+  },
+  {
+    "filename": "sqa.stackexchange.com_en_all_2026-02.zim",
+    "size_bytes": 88080384,
+    "url": "https://download.kiwix.org/zim/stack_exchange/sqa.stackexchange.com_en_all_2026-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/stack_exchange/sqa.stackexchange.com_en_all_2026-02.zim.torrent",
+    "group_key": "sqa.stackexchange.com_en_all"
+  },
+  {
+    "filename": "stackapps.com_en_all_2025-12.zim",
+    "size_bytes": 37748736,
+    "url": "https://download.kiwix.org/zim/stack_exchange/stackapps.com_en_all_2025-12.zim",
+    "torrent_url": "https://download.kiwix.org/zim/stack_exchange/stackapps.com_en_all_2025-12.zim.torrent",
+    "group_key": "stackapps.com_en_all"
+  },
+  {
+    "filename": "stackoverflow.com_en_all_2023-11.zim",
+    "size_bytes": 80530636800,
+    "url": "https://download.kiwix.org/zim/stack_exchange/stackoverflow.com_en_all_2023-11.zim",
+    "torrent_url": "https://download.kiwix.org/zim/stack_exchange/stackoverflow.com_en_all_2023-11.zim.torrent",
+    "group_key": "stackoverflow.com_en_all"
+  },
+  {
+    "filename": "stacks.math.columbia.edu_en_all_2025-06.zim",
+    "size_bytes": 154140672,
+    "url": "https://download.kiwix.org/zim/zimit/stacks.math.columbia.edu_en_all_2025-06.zim",
+    "torrent_url": "https://download.kiwix.org/zim/zimit/stacks.math.columbia.edu_en_all_2025-06.zim.torrent",
+    "group_key": "stacks.math.columbia.edu_en_all"
+  },
+  {
+    "filename": "stardewvalleywiki_en_all_2026-01.zim",
+    "size_bytes": 23068672,
+    "url": "https://download.kiwix.org/zim/other/stardewvalleywiki_en_all_2026-01.zim",
+    "torrent_url": "https://download.kiwix.org/zim/other/stardewvalleywiki_en_all_2026-01.zim.torrent",
+    "group_key": "stardewvalleywiki_en_all"
+  },
+  {
+    "filename": "stats.stackexchange.com_en_all_2026-02.zim",
+    "size_bytes": 1610612736,
+    "url": "https://download.kiwix.org/zim/stack_exchange/stats.stackexchange.com_en_all_2026-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/stack_exchange/stats.stackexchange.com_en_all_2026-02.zim.torrent",
+    "group_key": "stats.stackexchange.com_en_all"
+  },
+  {
+    "filename": "stellar.stackexchange.com_en_all_2026-02.zim",
+    "size_bytes": 8283750,
+    "url": "https://download.kiwix.org/zim/stack_exchange/stellar.stackexchange.com_en_all_2026-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/stack_exchange/stellar.stackexchange.com_en_all_2026-02.zim.torrent",
+    "group_key": "stellar.stackexchange.com_en_all"
+  },
+  {
+    "filename": "studio.blender.org_en_open-movies_2025-10.zim",
+    "size_bytes": 392167424,
+    "url": "https://download.kiwix.org/zim/videos/studio.blender.org_en_open-movies_2025-10.zim",
+    "torrent_url": "https://download.kiwix.org/zim/videos/studio.blender.org_en_open-movies_2025-10.zim.torrent",
+    "group_key": "studio.blender.org_en_open-movies"
+  },
+  {
+    "filename": "substrate.stackexchange.com_en_all_2026-02.zim",
+    "size_bytes": 32505856,
+    "url": "https://download.kiwix.org/zim/stack_exchange/substrate.stackexchange.com_en_all_2026-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/stack_exchange/substrate.stackexchange.com_en_all_2026-02.zim.torrent",
+    "group_key": "substrate.stackexchange.com_en_all"
+  },
+  {
+    "filename": "superuser.com_en_all_2026-02.zim",
+    "size_bytes": 3972844748,
+    "url": "https://download.kiwix.org/zim/stack_exchange/superuser.com_en_all_2026-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/stack_exchange/superuser.com_en_all_2026-02.zim.torrent",
+    "group_key": "superuser.com_en_all"
+  },
+  {
+    "filename": "survivorlibrary.com_en_all_2025-12.zim",
+    "size_bytes": 252329328640,
+    "url": "https://download.kiwix.org/zim/zimit/survivorlibrary.com_en_all_2025-12.zim",
+    "torrent_url": "https://download.kiwix.org/zim/zimit/survivorlibrary.com_en_all_2025-12.zim.torrent",
+    "group_key": "survivorlibrary.com_en_all"
+  },
+  {
+    "filename": "survivors_en_all_maxi_2026-03.zim",
+    "size_bytes": 123731968,
+    "url": "https://download.kiwix.org/zim/other/survivors_en_all_maxi_2026-03.zim",
+    "torrent_url": "https://download.kiwix.org/zim/other/survivors_en_all_maxi_2026-03.zim.torrent",
+    "group_key": "survivors_en_all"
+  },
+  {
+    "filename": "sustainability.stackexchange.com_en_all_2026-02.zim",
+    "size_bytes": 27262976,
+    "url": "https://download.kiwix.org/zim/stack_exchange/sustainability.stackexchange.com_en_all_2026-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/stack_exchange/sustainability.stackexchange.com_en_all_2026-02.zim.torrent",
+    "group_key": "sustainability.stackexchange.com_en_all"
+  },
+  {
+    "filename": "termux_en_all_maxi_2022-12.zim",
+    "size_bytes": 2306867,
+    "url": "https://download.kiwix.org/zim/other/termux_en_all_maxi_2022-12.zim",
+    "torrent_url": "https://download.kiwix.org/zim/other/termux_en_all_maxi_2022-12.zim.torrent",
+    "group_key": "termux_en_all"
+  },
+  {
+    "filename": "tex.stackexchange.com_en_all_2026-02.zim",
+    "size_bytes": 4509715660,
+    "url": "https://download.kiwix.org/zim/stack_exchange/tex.stackexchange.com_en_all_2026-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/stack_exchange/tex.stackexchange.com_en_all_2026-02.zim.torrent",
+    "group_key": "tex.stackexchange.com_en_all"
+  },
+  {
+    "filename": "tezos.stackexchange.com_en_all_2026-02.zim",
+    "size_bytes": 11534336,
+    "url": "https://download.kiwix.org/zim/stack_exchange/tezos.stackexchange.com_en_all_2026-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/stack_exchange/tezos.stackexchange.com_en_all_2026-02.zim.torrent",
+    "group_key": "tezos.stackexchange.com_en_all"
+  },
+  {
+    "filename": "thalesdoc_en_all_2025-12.zim",
+    "size_bytes": 3113851289,
+    "url": "https://download.kiwix.org/zim/other/thalesdoc_en_all_2025-12.zim",
+    "torrent_url": "https://download.kiwix.org/zim/other/thalesdoc_en_all_2025-12.zim.torrent",
+    "group_key": "thalesdoc_en_all"
+  },
+  {
+    "filename": "the_infosphere_en_all_maxi_2022-01.zim",
+    "size_bytes": 35651584,
+    "url": "https://download.kiwix.org/zim/other/the_infosphere_en_all_maxi_2022-01.zim",
+    "torrent_url": "https://download.kiwix.org/zim/other/the_infosphere_en_all_maxi_2022-01.zim.torrent",
+    "group_key": "the_infosphere_en_all"
+  },
+  {
+    "filename": "theworldfactbook_en_all_2026-02.zim",
+    "size_bytes": 406847488,
+    "url": "https://download.kiwix.org/zim/other/theworldfactbook_en_all_2026-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/other/theworldfactbook_en_all_2026-02.zim.torrent",
+    "group_key": "theworldfactbook_en_all"
+  },
+  {
+    "filename": "tomlehrersongs.com_en_2025-08.zim",
+    "size_bytes": 3865470566,
+    "url": "https://download.kiwix.org/zim/zimit/tomlehrersongs.com_en_2025-08.zim",
+    "torrent_url": "https://download.kiwix.org/zim/zimit/tomlehrersongs.com_en_2025-08.zim.torrent",
+    "group_key": "tomlehrersongs.com_en"
+  },
+  {
+    "filename": "tonedear.com_en_2025-07.zim",
+    "size_bytes": 2202009,
+    "url": "https://download.kiwix.org/zim/zimit/tonedear.com_en_2025-07.zim",
+    "torrent_url": "https://download.kiwix.org/zim/zimit/tonedear.com_en_2025-07.zim.torrent",
+    "group_key": "tonedear.com_en"
+  },
+  {
+    "filename": "tor.stackexchange.com_en_all_2026-02.zim",
+    "size_bytes": 31457280,
+    "url": "https://download.kiwix.org/zim/stack_exchange/tor.stackexchange.com_en_all_2026-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/stack_exchange/tor.stackexchange.com_en_all_2026-02.zim.torrent",
+    "group_key": "tor.stackexchange.com_en_all"
+  },
+  {
+    "filename": "travel.stackexchange.com_en_all_2026-02.zim",
+    "size_bytes": 460324864,
+    "url": "https://download.kiwix.org/zim/stack_exchange/travel.stackexchange.com_en_all_2026-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/stack_exchange/travel.stackexchange.com_en_all_2026-02.zim.torrent",
+    "group_key": "travel.stackexchange.com_en_all"
+  },
+  {
+    "filename": "tridion.stackexchange.com_en_all_2026-02.zim",
+    "size_bytes": 48234496,
+    "url": "https://download.kiwix.org/zim/stack_exchange/tridion.stackexchange.com_en_all_2026-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/stack_exchange/tridion.stackexchange.com_en_all_2026-02.zim.torrent",
+    "group_key": "tridion.stackexchange.com_en_all"
+  },
+  {
+    "filename": "unix.stackexchange.com_en_all_2026-02.zim",
+    "size_bytes": 1288490188,
+    "url": "https://download.kiwix.org/zim/stack_exchange/unix.stackexchange.com_en_all_2026-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/stack_exchange/unix.stackexchange.com_en_all_2026-02.zim.torrent",
+    "group_key": "unix.stackexchange.com_en_all"
+  },
+  {
+    "filename": "unrealircd_en_all_maxi_2026-02.zim",
+    "size_bytes": 1572864,
+    "url": "https://download.kiwix.org/zim/zimit/unrealircd_en_all_maxi_2026-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/zimit/unrealircd_en_all_maxi_2026-02.zim.torrent",
+    "group_key": "unrealircd_en_all"
+  },
+  {
+    "filename": "urban-prepper_en_all_2026-02.zim",
+    "size_bytes": 2254857830,
+    "url": "https://download.kiwix.org/zim/videos/urban-prepper_en_all_2026-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/videos/urban-prepper_en_all_2026-02.zim.torrent",
+    "group_key": "urban-prepper_en_all"
+  },
+  {
+    "filename": "usda-2015_en_2025-04.zim",
+    "size_bytes": 19922944,
+    "url": "https://download.kiwix.org/zim/other/usda-2015_en_2025-04.zim",
+    "torrent_url": "https://download.kiwix.org/zim/other/usda-2015_en_2025-04.zim.torrent",
+    "group_key": "usda-2015_en"
+  },
+  {
+    "filename": "ux.stackexchange.com_en_all_2026-02.zim",
+    "size_bytes": 545259520,
+    "url": "https://download.kiwix.org/zim/stack_exchange/ux.stackexchange.com_en_all_2026-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/stack_exchange/ux.stackexchange.com_en_all_2026-02.zim.torrent",
+    "group_key": "ux.stackexchange.com_en_all"
+  },
+  {
+    "filename": "vegetarianism.stackexchange.com_en_all_2026-02.zim",
+    "size_bytes": 9751756,
+    "url": "https://download.kiwix.org/zim/stack_exchange/vegetarianism.stackexchange.com_en_all_2026-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/stack_exchange/vegetarianism.stackexchange.com_en_all_2026-02.zim.torrent",
+    "group_key": "vegetarianism.stackexchange.com_en_all"
+  },
+  {
+    "filename": "vi.stackexchange.com_en_all_2026-02.zim",
+    "size_bytes": 90177536,
+    "url": "https://download.kiwix.org/zim/stack_exchange/vi.stackexchange.com_en_all_2026-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/stack_exchange/vi.stackexchange.com_en_all_2026-02.zim.torrent",
+    "group_key": "vi.stackexchange.com_en_all"
+  },
+  {
+    "filename": "video.stackexchange.com_en_all_2026-02.zim",
+    "size_bytes": 76546048,
+    "url": "https://download.kiwix.org/zim/stack_exchange/video.stackexchange.com_en_all_2026-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/stack_exchange/video.stackexchange.com_en_all_2026-02.zim.torrent",
+    "group_key": "video.stackexchange.com_en_all"
+  },
+  {
+    "filename": "vikidia_en_all_maxi_2026-03.zim",
+    "size_bytes": 73400320,
+    "url": "https://download.kiwix.org/zim/vikidia/vikidia_en_all_maxi_2026-03.zim",
+    "torrent_url": "https://download.kiwix.org/zim/vikidia/vikidia_en_all_maxi_2026-03.zim.torrent",
+    "group_key": "vikidia_en_all"
+  },
+  {
+    "filename": "voa_learning_en_all_2025-01.zim",
+    "size_bytes": 7086696038,
+    "url": "https://download.kiwix.org/zim/videos/voa_learning_en_all_2025-01.zim",
+    "torrent_url": "https://download.kiwix.org/zim/videos/voa_learning_en_all_2025-01.zim.torrent",
+    "group_key": "voa_learning_en_all"
+  },
+  {
+    "filename": "webapps.stackexchange.com_en_all_2026-02.zim",
+    "size_bytes": 289406976,
+    "url": "https://download.kiwix.org/zim/stack_exchange/webapps.stackexchange.com_en_all_2026-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/stack_exchange/webapps.stackexchange.com_en_all_2026-02.zim.torrent",
+    "group_key": "webapps.stackexchange.com_en_all"
+  },
+  {
+    "filename": "webmasters.stackexchange.com_en_all_2025-12.zim",
+    "size_bytes": 227540992,
+    "url": "https://download.kiwix.org/zim/stack_exchange/webmasters.stackexchange.com_en_all_2025-12.zim",
+    "torrent_url": "https://download.kiwix.org/zim/stack_exchange/webmasters.stackexchange.com_en_all_2025-12.zim.torrent",
+    "group_key": "webmasters.stackexchange.com_en_all"
+  },
+  {
+    "filename": "westeros_en_all_2018-09.zim",
+    "size_bytes": 232783872,
+    "url": "https://download.kiwix.org/zim/other/westeros_en_all_2018-09.zim",
+    "torrent_url": "https://download.kiwix.org/zim/other/westeros_en_all_2018-09.zim.torrent",
+    "group_key": "westeros_en_all"
+  },
+  {
+    "filename": "whitewolfwiki_en_all_maxi_2024-06.zim",
+    "size_bytes": 202375168,
+    "url": "https://download.kiwix.org/zim/other/whitewolfwiki_en_all_maxi_2024-06.zim",
+    "torrent_url": "https://download.kiwix.org/zim/other/whitewolfwiki_en_all_maxi_2024-06.zim.torrent",
+    "group_key": "whitewolfwiki_en_all"
+  },
+  {
+    "filename": "wikem_en_all_maxi_2021-02.zim",
+    "size_bytes": 44040192,
+    "url": "https://download.kiwix.org/zim/other/wikem_en_all_maxi_2021-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/other/wikem_en_all_maxi_2021-02.zim.torrent",
+    "group_key": "wikem_en_all"
+  },
+  {
+    "filename": "wikibooks_en_all_maxi_2026-01.zim",
+    "size_bytes": 5476083302,
+    "url": "https://download.kiwix.org/zim/wikibooks/wikibooks_en_all_maxi_2026-01.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikibooks/wikibooks_en_all_maxi_2026-01.zim.torrent",
+    "group_key": "wikibooks_en_all"
+  },
+  {
+    "filename": "wikiciv_en_all_maxi_2025-11.zim",
+    "size_bytes": 4613734,
+    "url": "https://download.kiwix.org/zim/other/wikiciv_en_all_maxi_2025-11.zim",
+    "torrent_url": "https://download.kiwix.org/zim/other/wikiciv_en_all_maxi_2025-11.zim.torrent",
+    "group_key": "wikiciv_en_all"
+  },
+  {
+    "filename": "wikinews_en_all_maxi_2026-01.zim",
+    "size_bytes": 317718528,
+    "url": "https://download.kiwix.org/zim/wikinews/wikinews_en_all_maxi_2026-01.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikinews/wikinews_en_all_maxi_2026-01.zim.torrent",
+    "group_key": "wikinews_en_all"
+  },
+  {
+    "filename": "wikipedia_en_100_2026-01.zim",
+    "size_bytes": 334495744,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_100_2026-01.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_100_2026-01.zim.torrent",
+    "group_key": "wikipedia_en_100"
+  },
+  {
+    "filename": "wikipedia_en_100_mini_2025-10.zim",
+    "size_bytes": 4613734,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_100_mini_2025-10.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_100_mini_2025-10.zim.torrent",
+    "group_key": "wikipedia_en_100_mini"
+  },
+  {
+    "filename": "wikipedia_en_all_maxi_2026-02.zim",
+    "size_bytes": 123480309760,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_all_maxi_2026-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_all_maxi_2026-02.zim.torrent",
+    "group_key": "wikipedia_en_all"
+  },
+  {
+    "filename": "wikipedia_en_all_mini_2026-03.zim",
+    "size_bytes": 12884901888,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_all_mini_2026-03.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_all_mini_2026-03.zim.torrent",
+    "group_key": "wikipedia_en_all_mini"
+  },
+  {
+    "filename": "wikipedia_en_astronomy_maxi_2026-02.zim",
+    "size_bytes": 1610612736,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_astronomy_maxi_2026-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_astronomy_maxi_2026-02.zim.torrent",
+    "group_key": "wikipedia_en_astronomy"
+  },
+  {
+    "filename": "wikipedia_en_baseball_maxi_2025-12.zim",
+    "size_bytes": 806354944,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_baseball_maxi_2025-12.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_baseball_maxi_2025-12.zim.torrent",
+    "group_key": "wikipedia_en_baseball"
+  },
+  {
+    "filename": "wikipedia_en_basketball_maxi_2026-03.zim",
+    "size_bytes": 469762048,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_basketball_maxi_2026-03.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_basketball_maxi_2026-03.zim.torrent",
+    "group_key": "wikipedia_en_basketball"
+  },
+  {
+    "filename": "wikipedia_en_chemistry_maxi_2026-01.zim",
+    "size_bytes": 492830720,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_chemistry_maxi_2026-01.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_chemistry_maxi_2026-01.zim.torrent",
+    "group_key": "wikipedia_en_chemistry"
+  },
+  {
+    "filename": "wikipedia_en_chemistry_mini_2026-01.zim",
+    "size_bytes": 24117248,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_chemistry_mini_2026-01.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_chemistry_mini_2026-01.zim.torrent",
+    "group_key": "wikipedia_en_chemistry_mini"
+  },
+  {
+    "filename": "wikipedia_en_climate-change_maxi_2026-01.zim",
+    "size_bytes": 202375168,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_climate-change_maxi_2026-01.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_climate-change_maxi_2026-01.zim.torrent",
+    "group_key": "wikipedia_en_climate-change"
+  },
+  {
+    "filename": "wikipedia_en_climate-change_mini_2026-01.zim",
+    "size_bytes": 11534336,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_climate-change_mini_2026-01.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_climate-change_mini_2026-01.zim.torrent",
+    "group_key": "wikipedia_en_climate-change_mini"
+  },
+  {
+    "filename": "wikipedia_en_comics_maxi_2026-01.zim",
+    "size_bytes": 619708416,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_comics_maxi_2026-01.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_comics_maxi_2026-01.zim.torrent",
+    "group_key": "wikipedia_en_comics"
+  },
+  {
+    "filename": "wikipedia_en_computer_maxi_2026-03.zim",
+    "size_bytes": 953155584,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_computer_maxi_2026-03.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_computer_maxi_2026-03.zim.torrent",
+    "group_key": "wikipedia_en_computer"
+  },
+  {
+    "filename": "wikipedia_en_cricket_maxi_2026-01.zim",
+    "size_bytes": 334495744,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_cricket_maxi_2026-01.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_cricket_maxi_2026-01.zim.torrent",
+    "group_key": "wikipedia_en_cricket"
+  },
+  {
+    "filename": "wikipedia_en_football_maxi_2026-01.zim",
+    "size_bytes": 3543348019,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_football_maxi_2026-01.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_football_maxi_2026-01.zim.torrent",
+    "group_key": "wikipedia_en_football"
+  },
+  {
+    "filename": "wikipedia_en_geography_maxi_2026-01.zim",
+    "size_bytes": 1395864371,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_geography_maxi_2026-01.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_geography_maxi_2026-01.zim.torrent",
+    "group_key": "wikipedia_en_geography"
+  },
+  {
+    "filename": "wikipedia_en_golf_maxi_2026-01.zim",
+    "size_bytes": 122683392,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_golf_maxi_2026-01.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_golf_maxi_2026-01.zim.torrent",
+    "group_key": "wikipedia_en_golf"
+  },
+  {
+    "filename": "wikipedia_en_history_maxi_2026-01.zim",
+    "size_bytes": 2254857830,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_history_maxi_2026-01.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_history_maxi_2026-01.zim.torrent",
+    "group_key": "wikipedia_en_history"
+  },
+  {
+    "filename": "wikipedia_en_ice-hockey_maxi_2026-01.zim",
+    "size_bytes": 515899392,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_ice-hockey_maxi_2026-01.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_ice-hockey_maxi_2026-01.zim.torrent",
+    "group_key": "wikipedia_en_ice-hockey"
+  },
+  {
+    "filename": "wikipedia_en_indian-cinema_maxi_2026-01.zim",
+    "size_bytes": 417333248,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_indian-cinema_maxi_2026-01.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_indian-cinema_maxi_2026-01.zim.torrent",
+    "group_key": "wikipedia_en_indian-cinema"
+  },
+  {
+    "filename": "wikipedia_en_knots_maxi_2026-01.zim",
+    "size_bytes": 18874368,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_knots_maxi_2026-01.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_knots_maxi_2026-01.zim.torrent",
+    "group_key": "wikipedia_en_knots"
+  },
+  {
+    "filename": "wikipedia_en_mathematics_maxi_2026-03.zim",
+    "size_bytes": 1288490188,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_mathematics_maxi_2026-03.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_mathematics_maxi_2026-03.zim.torrent",
+    "group_key": "wikipedia_en_mathematics"
+  },
+  {
+    "filename": "wikipedia_en_mathematics_mini_2026-03.zim",
+    "size_bytes": 58720256,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_mathematics_mini_2026-03.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_mathematics_mini_2026-03.zim.torrent",
+    "group_key": "wikipedia_en_mathematics_mini"
+  },
+  {
+    "filename": "wikipedia_en_medicine_maxi_2026-01.zim",
+    "size_bytes": 2147483648,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_medicine_maxi_2026-01.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_medicine_maxi_2026-01.zim.torrent",
+    "group_key": "wikipedia_en_medicine"
+  },
+  {
+    "filename": "wikipedia_en_medicine_mini_2026-01.zim",
+    "size_bytes": 162529280,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_medicine_mini_2026-01.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_medicine_mini_2026-01.zim.torrent",
+    "group_key": "wikipedia_en_medicine_mini"
+  },
+  {
+    "filename": "wikipedia_en_molcell_maxi_2026-01.zim",
+    "size_bytes": 990904320,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_molcell_maxi_2026-01.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_molcell_maxi_2026-01.zim.torrent",
+    "group_key": "wikipedia_en_molcell"
+  },
+  {
+    "filename": "wikipedia_en_movies_maxi_2026-01.zim",
+    "size_bytes": 4831838208,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_movies_maxi_2026-01.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_movies_maxi_2026-01.zim.torrent",
+    "group_key": "wikipedia_en_movies"
+  },
+  {
+    "filename": "wikipedia_en_nollywood_maxi_2026-01.zim",
+    "size_bytes": 19922944,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_nollywood_maxi_2026-01.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_nollywood_maxi_2026-01.zim.torrent",
+    "group_key": "wikipedia_en_nollywood"
+  },
+  {
+    "filename": "wikipedia_en_physics_maxi_2026-01.zim",
+    "size_bytes": 1288490188,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_physics_maxi_2026-01.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_physics_maxi_2026-01.zim.torrent",
+    "group_key": "wikipedia_en_physics"
+  },
+  {
+    "filename": "wikipedia_en_physics_mini_2026-01.zim",
+    "size_bytes": 55574528,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_physics_mini_2026-01.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_physics_mini_2026-01.zim.torrent",
+    "group_key": "wikipedia_en_physics_mini"
+  },
+  {
+    "filename": "wikipedia_en_ray-charles_maxi_2026-02.zim",
+    "size_bytes": 2831155,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_ray-charles_maxi_2026-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_ray-charles_maxi_2026-02.zim.torrent",
+    "group_key": "wikipedia_en_ray-charles"
+  },
+  {
+    "filename": "wikipedia_en_ray-charles_mini_2026-02.zim",
+    "size_bytes": 710656,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_ray-charles_mini_2026-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_ray-charles_mini_2026-02.zim.torrent",
+    "group_key": "wikipedia_en_ray-charles_mini"
+  },
+  {
+    "filename": "wikipedia_en_simple_all_maxi_2026-02.zim",
+    "size_bytes": 3435973836,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_simple_all_maxi_2026-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_simple_all_maxi_2026-02.zim.torrent",
+    "group_key": "wikipedia_en_simple_all"
+  },
+  {
+    "filename": "wikipedia_en_simple_all_mini_2026-02.zim",
+    "size_bytes": 462422016,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_simple_all_mini_2026-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_simple_all_mini_2026-02.zim.torrent",
+    "group_key": "wikipedia_en_simple_all_mini"
+  },
+  {
+    "filename": "wikipedia_en_sociology_maxi_2026-01.zim",
+    "size_bytes": 529530880,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_sociology_maxi_2026-01.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_sociology_maxi_2026-01.zim.torrent",
+    "group_key": "wikipedia_en_sociology"
+  },
+  {
+    "filename": "wikipedia_en_tennis_maxi_2026-01.zim",
+    "size_bytes": 415236096,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_tennis_maxi_2026-01.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_tennis_maxi_2026-01.zim.torrent",
+    "group_key": "wikipedia_en_tennis"
+  },
+  {
+    "filename": "wikipedia_en_top1m_maxi_2026-01.zim",
+    "size_bytes": 48318382080,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_top1m_maxi_2026-01.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_top1m_maxi_2026-01.zim.torrent",
+    "group_key": "wikipedia_en_top1m"
+  },
+  {
+    "filename": "wikipedia_en_top_maxi_2026-03.zim",
+    "size_bytes": 8267812044,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_top_maxi_2026-03.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_top_maxi_2026-03.zim.torrent",
+    "group_key": "wikipedia_en_top"
+  },
+  {
+    "filename": "wikipedia_en_top_mini_2026-03.zim",
+    "size_bytes": 330301440,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_top_mini_2026-03.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_top_mini_2026-03.zim.torrent",
+    "group_key": "wikipedia_en_top_mini"
+  },
+  {
+    "filename": "wikipedia_en_wp1-0.8_maxi_2026-01.zim",
+    "size_bytes": 8053063680,
+    "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_wp1-0.8_maxi_2026-01.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikipedia/wikipedia_en_wp1-0.8_maxi_2026-01.zim.torrent",
+    "group_key": "wikipedia_en_wp1-0.8"
+  },
+  {
+    "filename": "wikiquote_en_all_maxi_2026-01.zim",
+    "size_bytes": 922746880,
+    "url": "https://download.kiwix.org/zim/wikiquote/wikiquote_en_all_maxi_2026-01.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikiquote/wikiquote_en_all_maxi_2026-01.zim.torrent",
+    "group_key": "wikiquote_en_all"
+  },
+  {
+    "filename": "wikisource_en_all_maxi_2026-02.zim",
+    "size_bytes": 19327352832,
+    "url": "https://download.kiwix.org/zim/wikisource/wikisource_en_all_maxi_2026-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikisource/wikisource_en_all_maxi_2026-02.zim.torrent",
+    "group_key": "wikisource_en_all"
+  },
+  {
+    "filename": "wikispecies_en_all_maxi_2026-01.zim",
+    "size_bytes": 3328599654,
+    "url": "https://download.kiwix.org/zim/other/wikispecies_en_all_maxi_2026-01.zim",
+    "torrent_url": "https://download.kiwix.org/zim/other/wikispecies_en_all_maxi_2026-01.zim.torrent",
+    "group_key": "wikispecies_en_all"
+  },
+  {
+    "filename": "wikitech_en_all_maxi_2024-06.zim",
+    "size_bytes": 48234496,
+    "url": "https://download.kiwix.org/zim/other/wikitech_en_all_maxi_2024-06.zim",
+    "torrent_url": "https://download.kiwix.org/zim/other/wikitech_en_all_maxi_2024-06.zim.torrent",
+    "group_key": "wikitech_en_all"
+  },
+  {
+    "filename": "wikiversity_en_all_maxi_2026-02.zim",
+    "size_bytes": 2362232012,
+    "url": "https://download.kiwix.org/zim/wikiversity/wikiversity_en_all_maxi_2026-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikiversity/wikiversity_en_all_maxi_2026-02.zim.torrent",
+    "group_key": "wikiversity_en_all"
+  },
+  {
+    "filename": "wikivoyage_en_all_maxi_2025-12.zim",
+    "size_bytes": 1181116006,
+    "url": "https://download.kiwix.org/zim/wikivoyage/wikivoyage_en_all_maxi_2025-12.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikivoyage/wikivoyage_en_all_maxi_2025-12.zim.torrent",
+    "group_key": "wikivoyage_en_all"
+  },
+  {
+    "filename": "wikivoyage_en_europe_maxi_2025-12.zim",
+    "size_bytes": 414187520,
+    "url": "https://download.kiwix.org/zim/wikivoyage/wikivoyage_en_europe_maxi_2025-12.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wikivoyage/wikivoyage_en_europe_maxi_2025-12.zim.torrent",
+    "group_key": "wikivoyage_en_europe"
+  },
+  {
+    "filename": "wiktionary_en_all_nopic_2026-02.zim",
+    "size_bytes": 8804682956,
+    "url": "https://download.kiwix.org/zim/wiktionary/wiktionary_en_all_nopic_2026-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/wiktionary/wiktionary_en_all_nopic_2026-02.zim.torrent",
+    "group_key": "wiktionary_en_all"
+  },
+  {
+    "filename": "womenshistory.si.edu_en_all_2025-03.zim",
+    "size_bytes": 4939212390,
+    "url": "https://download.kiwix.org/zim/zimit/womenshistory.si.edu_en_all_2025-03.zim",
+    "torrent_url": "https://download.kiwix.org/zim/zimit/womenshistory.si.edu_en_all_2025-03.zim.torrent",
+    "group_key": "womenshistory.si.edu_en_all"
+  },
+  {
+    "filename": "woodworking.stackexchange.com_en_all_2026-02.zim",
+    "size_bytes": 104857600,
+    "url": "https://download.kiwix.org/zim/stack_exchange/woodworking.stackexchange.com_en_all_2026-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/stack_exchange/woodworking.stackexchange.com_en_all_2026-02.zim.torrent",
+    "group_key": "woodworking.stackexchange.com_en_all"
+  },
+  {
+    "filename": "wordpress.stackexchange.com_en_all_2025-08.zim",
+    "size_bytes": 476053504,
+    "url": "https://download.kiwix.org/zim/stack_exchange/wordpress.stackexchange.com_en_all_2025-08.zim",
+    "torrent_url": "https://download.kiwix.org/zim/stack_exchange/wordpress.stackexchange.com_en_all_2025-08.zim.torrent",
+    "group_key": "wordpress.stackexchange.com_en_all"
+  },
+  {
+    "filename": "workplace.stackexchange.com_en_all_2026-02.zim",
+    "size_bytes": 245366784,
+    "url": "https://download.kiwix.org/zim/stack_exchange/workplace.stackexchange.com_en_all_2026-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/stack_exchange/workplace.stackexchange.com_en_all_2026-02.zim.torrent",
+    "group_key": "workplace.stackexchange.com_en_all"
+  },
+  {
+    "filename": "worldbuilding.stackexchange.com_en_all_2025-12.zim",
+    "size_bytes": 836763648,
+    "url": "https://download.kiwix.org/zim/stack_exchange/worldbuilding.stackexchange.com_en_all_2025-12.zim",
+    "torrent_url": "https://download.kiwix.org/zim/stack_exchange/worldbuilding.stackexchange.com_en_all_2025-12.zim.torrent",
+    "group_key": "worldbuilding.stackexchange.com_en_all"
+  },
+  {
+    "filename": "writing.stackexchange.com_en_all_2026-02.zim",
+    "size_bytes": 100663296,
+    "url": "https://download.kiwix.org/zim/stack_exchange/writing.stackexchange.com_en_all_2026-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/stack_exchange/writing.stackexchange.com_en_all_2026-02.zim.torrent",
+    "group_key": "writing.stackexchange.com_en_all"
+  },
+  {
+    "filename": "www.mankier.com_en_all_2026-01.zim",
+    "size_bytes": 189792256,
+    "url": "https://download.kiwix.org/zim/zimit/www.mankier.com_en_all_2026-01.zim",
+    "torrent_url": "https://download.kiwix.org/zim/zimit/www.mankier.com_en_all_2026-01.zim.torrent",
+    "group_key": "www.mankier.com_en_all"
+  },
+  {
+    "filename": "www.ready.gov_en_2024-09.zim",
+    "size_bytes": 4939212390,
+    "url": "https://download.kiwix.org/zim/zimit/www.ready.gov_en_2024-09.zim",
+    "torrent_url": "https://download.kiwix.org/zim/zimit/www.ready.gov_en_2024-09.zim.torrent",
+    "group_key": "www.ready.gov_en"
+  },
+  {
+    "filename": "wwwnc.cdc.gov_en_all_2024-08.zim",
+    "size_bytes": 245366784,
+    "url": "https://download.kiwix.org/zim/zimit/wwwnc.cdc.gov_en_all_2024-08.zim",
+    "torrent_url": "https://download.kiwix.org/zim/zimit/wwwnc.cdc.gov_en_all_2024-08.zim.torrent",
+    "group_key": "wwwnc.cdc.gov_en_all"
+  },
+  {
+    "filename": "xkcd.com_en_all_2026-02.zim",
+    "size_bytes": 444596224,
+    "url": "https://download.kiwix.org/zim/zimit/xkcd.com_en_all_2026-02.zim",
+    "torrent_url": "https://download.kiwix.org/zim/zimit/xkcd.com_en_all_2026-02.zim.torrent",
+    "group_key": "xkcd.com_en_all"
+  },
+  {
+    "filename": "zdoom_en_all_maxi_2023-01.zim",
+    "size_bytes": 10485760,
+    "url": "https://download.kiwix.org/zim/other/zdoom_en_all_maxi_2023-01.zim",
+    "torrent_url": "https://download.kiwix.org/zim/other/zdoom_en_all_maxi_2023-01.zim.torrent",
+    "group_key": "zdoom_en_all"
+  },
+  {
+    "filename": "zimgit-food-preparation_en_2025-04.zim",
+    "size_bytes": 97517568,
+    "url": "https://download.kiwix.org/zim/other/zimgit-food-preparation_en_2025-04.zim",
+    "torrent_url": "https://download.kiwix.org/zim/other/zimgit-food-preparation_en_2025-04.zim.torrent",
+    "group_key": "zimgit-food-preparation_en"
+  },
+  {
+    "filename": "zimgit-knots_en_2024-08.zim",
+    "size_bytes": 28311552,
+    "url": "https://download.kiwix.org/zim/other/zimgit-knots_en_2024-08.zim",
+    "torrent_url": "https://download.kiwix.org/zim/other/zimgit-knots_en_2024-08.zim.torrent",
+    "group_key": "zimgit-knots_en"
+  },
+  {
+    "filename": "zimgit-medicine_en_2024-08.zim",
+    "size_bytes": 70254592,
+    "url": "https://download.kiwix.org/zim/other/zimgit-medicine_en_2024-08.zim",
+    "torrent_url": "https://download.kiwix.org/zim/other/zimgit-medicine_en_2024-08.zim.torrent",
+    "group_key": "zimgit-medicine_en"
+  },
+  {
+    "filename": "zimgit-post-disaster_en_2024-05.zim",
+    "size_bytes": 644874240,
+    "url": "https://download.kiwix.org/zim/other/zimgit-post-disaster_en_2024-05.zim",
+    "torrent_url": "https://download.kiwix.org/zim/other/zimgit-post-disaster_en_2024-05.zim.torrent",
+    "group_key": "zimgit-post-disaster_en"
+  },
+  {
+    "filename": "zimgit-water_en_2024-08.zim",
+    "size_bytes": 20971520,
+    "url": "https://download.kiwix.org/zim/other/zimgit-water_en_2024-08.zim",
+    "torrent_url": "https://download.kiwix.org/zim/other/zimgit-water_en_2024-08.zim.torrent",
+    "group_key": "zimgit-water_en"
+  }
+]
