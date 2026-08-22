@@ -1,7 +1,7 @@
 # Kiwix English Best — User Guide
 
-**Version:** v20260403a  
-**Last Updated:** April 3, 2026
+**Version:** v20260822a  
+**Last Updated:** August 22, 2026
 
 ---
 
@@ -15,18 +15,20 @@
    - [Option 2 — Download / Resume from Existing List](#option-2)
    - [Option 3 — Check for Updates](#option-3)
    - [Option 4 — Cleanup ZIMs Directory](#option-4)
-5. [Non-Interactive Update Mode (Cron Jobs)](#non-interactive-mode)
-6. [File Reference](#file-reference)
-7. [Download Methods](#download-methods)
-8. [Progress Display](#progress-display)
-9. [Integrity Verification](#integrity-verification)
-10. [Tips and Troubleshooting](#tips-and-troubleshooting)
+5. [Selection Rules](#selection-rules)
+6. [Non-Interactive Update Mode (Cron Jobs)](#non-interactive-mode)
+7. [File Reference](#file-reference)
+8. [Download Methods](#download-methods)
+9. [Progress Display](#progress-display)
+10. [Integrity Verification](#integrity-verification)
+11. [Server Layout Note (August 2026)](#server-layout-note)
+12. [Tips and Troubleshooting](#tips-and-troubleshooting)
 
 ---
 
 ## Overview
 
-**Kiwix English Best** is a Python script that automates the selection, downloading, and maintenance of the best available English-language ZIM files from [download.kiwix.org](https://download.kiwix.org/zim/). ZIM files are compressed offline archives used by the [Kiwix](https://www.kiwix.org) reader to browse Wikipedia, Stack Exchange, Project Gutenberg, and hundreds of other resources without an internet connection.
+**Kiwix English Best** is a Python script that automates the selection, downloading, and maintenance of the best available English-language ZIM files from the Kiwix download mirrors. ZIM files are compressed offline archives used by the [Kiwix](https://www.kiwix.org) reader to browse Wikipedia, Stack Exchange, Project Gutenberg, FreeCodeCamp, and hundreds of other resources without an internet connection.
 
 The script:
 
@@ -36,6 +38,7 @@ The script:
 - Verifies file integrity after download
 - Detects and downloads updates when newer versions are available on the server
 - Cleans up older duplicate versions to save disk space
+- Reports all sizes in binary units (KiB / MiB / GiB / TiB) with two decimal places
 
 ---
 
@@ -68,13 +71,13 @@ sudo apt install python3-libtorrent
 Run the script interactively:
 
 ```bash
-python3 kiwix_english_best.py
+python3 kiwix_english_best_v20260822a.py
 ```
 
 You will see the main menu:
 
 ```
-Kiwix English ZIM Tool v20260403a
+Kiwix English ZIM Tool v20260822a
 
 1) Generate / download new best English ZIMs list
 2) Download / resume from existing best English ZIMs list
@@ -96,9 +99,9 @@ All ZIM files are stored in the `zims/` subdirectory relative to the script's lo
 **What it does:**
 
 1. Crawls the Kiwix server to discover all available English ZIM files
-2. Selects the best (newest date, then largest) file per content group, excluding unwanted variants (nopic, mini, lcc-*, etc.)
+2. Selects the best (newest date, then largest / highest priority) file per content group, applying the exclusion rules below
 3. Saves the complete best list to `kiwix_english_best.txt` — this always happens, even if all files are already present on disk
-4. Checks which files from the list are not yet downloaded
+4. Checks which files from the list are not yet downloaded (tolerant size match)
 5. If files are missing, shows a space check and prompts to download
 
 **Prompts:**
@@ -120,7 +123,7 @@ All ZIM files are stored in the `zims/` subdirectory relative to the script's lo
 
 1. Checks whether `kiwix_resume_update.txt` exists (left by a failed Option 3 session) — if so, offers to resume those incomplete update downloads first
 2. Otherwise loads `kiwix_english_best.txt`
-3. Filters out files already present on disk (using a size-tolerance check)
+3. Filters out files already present on disk (using a size-tolerance check: max of 50 MiB or 5% of expected size)
 4. Shows a space check for remaining files
 5. Downloads any incomplete or missing files, resuming `.partial` files where they exist
 
@@ -189,17 +192,41 @@ Answering `n` cancels without touching any files.
 Duplicate groups found: 2
 
   Group 'wikipedia_en_all_maxi':
-    Keep   : wikipedia_en_all_maxi_2026-03.zim
-    Delete : wikipedia_en_all_maxi_2026-02.zim (115.00 GiB)
+    Keep   : wikipedia_en_all_maxi_2026-07.zim
+    Delete : wikipedia_en_all_maxi_2026-04.zim (115.00 GiB)
 
   Group 'devdocs_en_axios':
-    Keep   : devdocs_en_axios_2026-02.zim
-    Delete : devdocs_en_axios_2025-10.zim (407.00 KiB)
+    Keep   : devdocs_en_axios_2026-06.zim
+    Delete : devdocs_en_axios_2026-02.zim (330.00 KiB)
 
   2 file(s) will be deleted, freeing 115.00 GiB.
 
 Proceed with deletion? (y/n):
 ```
+
+---
+
+## Selection Rules
+
+The crawler keeps only the most comprehensive English variant in each content group. Priority is:
+
+1. `_all_maxi_` (highest)
+2. Other comprehensive `_all_` forms
+3. Everything else (only if no better option exists)
+
+Hard exclusions:
+
+| Rule | Effect |
+|---|---|
+| Wikipedia | Keep **only** `wikipedia_en_all_maxi_*`. Drop topic splits, `_mini_`, `_nopic_`, `_simple_all_`, `_top_*`, `_wp1_*`, etc. |
+| Gutenberg | Keep **only** `gutenberg_en_all_*`. Drop all `gutenberg_en_lcc-*` letter splits. |
+| Wiktionary | Keep `wiktionary_en_all_nopic_*` (the only comprehensive English option available). |
+| FreeCodeCamp | Keep **only** `freecodecamp_en_all_*`. Drop all topic subset ZIMs. |
+| Speedtest / diagnostics | Drop all `speedtest_*` files. |
+| Other nopic | Drop most remaining `_nopic_*` variants. |
+| Regional subsets | Drop `wikivoyage_en_europe_*` and similar partials. |
+
+Within a group, files are ranked by: selection priority → content date (newer first) → size (larger first) → filename.
 
 ---
 
@@ -210,9 +237,9 @@ The script supports a fully non-interactive update mode suitable for automated s
 ### Usage
 
 ```bash
-python3 kiwix_english_best.py -u
+python3 kiwix_english_best_v20260822a.py -u
 # or
-python3 kiwix_english_best.py --update
+python3 kiwix_english_best_v20260822a.py --update
 ```
 
 ### Behaviour
@@ -228,7 +255,7 @@ python3 kiwix_english_best.py --update
 To run every Sunday at 3:00 AM and log output:
 
 ```bash
-0 3 * * 0  python3 /path/to/kiwix_english_best.py -u >> /path/to/kiwix_cron.log 2>&1
+0 3 * * 0  python3 /path/to/kiwix_english_best_v20260822a.py -u >> /path/to/kiwix_cron.log 2>&1
 ```
 
 **Important:** If your ZIM files are on an encrypted volume (e.g. VeraCrypt), the volume must already be mounted when the cron job runs. The script will exit gracefully if it is not.
@@ -254,8 +281,10 @@ To run every Sunday at 3:00 AM and log output:
 
 ```
 # Format: filename|size_human|size_bytes|url|torrent_url
-wikipedia_en_all_maxi_2026-03.zim|115.00 GiB|123456789012|https://download.kiwix.org/...|https://...torrent
+wikipedia_en_all_maxi_2026-07.zim|115.00 GiB|123456789012|https://...|https://...torrent
 ```
+
+Both old format (`filename|size_bytes|url|torrent_url`) and new format (`filename|size_human|size_bytes|url|torrent_url`) are accepted when loading a list.
 
 ---
 
@@ -265,17 +294,13 @@ wikipedia_en_all_maxi_2026-03.zim|115.00 GiB|123456789012|https://download.kiwix
 
 When a `.torrent` file is available on the Kiwix server for a ZIM file, the script downloads via BitTorrent using libtorrent. This is faster and more reliable for large files, as it distributes the load across multiple peers.
 
-The progress display shows seeds, peers, and distributed copies:
-
-```
-wikipedia_en_all_maxi_2026-03.zim - Downloading  |  45.2% |  10.5 MB/s | Seeds: 24/26 | Copies: 24.05
-```
-
-Torrent downloads are **piece-verified** by libtorrent, so the ZIM header check is performed instead of running `zimcheck` (which would be redundant and slow).
+The progress display shows status, percentage, speed, and peer counts. Torrent downloads are **piece-verified** by libtorrent, so only a ZIM magic-header check is performed after completion (full `zimcheck` would be redundant and slow).
 
 ### HTTP (Fallback)
 
-If no torrent is available, or if the torrent download fails, the script falls back to direct HTTP download from the Kiwix mirrors. Resume is supported via HTTP Range requests — interrupted downloads pick up from the byte offset already on disk.
+If no torrent is available, or if the torrent download fails, the script falls back to direct HTTP download from the configured mirrors. Resume is supported via HTTP Range requests — interrupted downloads pick up from the byte offset already on disk.
+
+Default concurrency is **4** parallel downloads. Space checks include a safety buffer (default 10 GiB, or 10% of remaining required size, whichever is larger).
 
 ---
 
@@ -283,42 +308,21 @@ If no torrent is available, or if the torrent download fails, the script falls b
 
 ### Verbose Mode
 
-Each active download gets its own line, updated in real time. A total progress bar appears below:
+Each active download gets its own status line. A total progress bar tracks cumulative bytes downloaded versus the session total, with a byte-based ETA:
 
 ```
-coreyms_en_python-tutorials_2026-04.zim - Downloading  |  78.4% |  733.5 KB/s | HTTP
-www.ready.gov_en_2024-12.zim - Downloading              |  98.3% |  6503.4 KB/s | HTTP
-Total progress:  86%|#########5 | 4.53G/5.30G [00:29:07, 2.66 MiB/s, ETA=00:04:55]
+gutenberg_en_all_2025-11.zim - downloading | 12.4% | 5.2 MB/s | Peers: 11
+khanacademy_en_all_2023-03.zim - downloading | 3.1% | 2.1 MB/s | Peers: 8
+Total progress:  4%|▍ | 24.5G/609G [00:12:41, 780MB/s, ETA=01:15:22]
 ```
-
-When a file completes, its status changes to `Completed` before disappearing from the display.
 
 ### Non-Verbose Mode
 
-A single updating block shows all active files plus the total bar, rewritten in place without scrolling.
+A single updating block shows active files plus the total bar, rewritten in place without scrolling.
 
 ### Post-Run Summary
 
-After every download session, a summary is printed:
-
-```
-Post-run summary:
-  - Total files in list: 3
-  - Good / verified files: 585
-  - Corrupt files detected: 0
-  - Total size on disk (good files): 1.10 TiB
-  - Corrupt files size: 0.00 B
-  - Disk usage in ./zims/: 1.10 TiB
-```
-
-If any downloads were incomplete, they are listed with bytes on disk and bytes remaining:
-
-```
-  ⚠ Incomplete download(s) — 1 file(s) not fully downloaded:
-    www.ready.gov_en_2024-12.zim.partial (2.26 GiB on disk, 37.85 MiB remaining)
-
-    → Run option 3 to resume these downloads.
-```
+After every download session, a summary is printed with good / corrupt counts and total disk usage under `./zims/`. Incomplete files (if any) are listed with bytes on disk and bytes remaining, plus a pointer to the appropriate resume option.
 
 ---
 
@@ -341,28 +345,68 @@ Files that fail verification are moved to `zims/corrupt/` and logged to `kiwix_d
 
 ---
 
+## Server Layout Note (August 2026)
+
+As of August 2026, `https://download.kiwix.org/zim/` permanently redirects to the Kiwix Hub marketing site (`https://hub.kiwix.org/downloads/`), which does **not** provide a classic Apache directory listing.
+
+This script therefore crawls:
+
+```
+https://lb.download.kiwix.org/zim/
+```
+
+which still serves the traditional index of category directories (`wikipedia/`, `gutenberg/`, `stack_exchange/`, `zimit/`, etc.). Individual file download URLs on `download.kiwix.org` continue to work.
+
+If a future layout change removes the Apache `<pre>` listing from the configured base URL, the script prints:
+
+```
+WARNING: No Apache <pre> listing found at <url>
+  The site layout may have changed. Check BASE_URL / mirrors.
+```
+
+and returns an empty result set instead of failing silently.
+
+---
+
 ## Tips and Troubleshooting
 
 ### A download failed — how do I resume it?
 
-Run **Option 3**. If a resume file exists, you'll be offered the choice to resume the incomplete session. The `.partial` file in `zims/` will be picked up automatically.
+- If the failure happened during an **Option 3** update session, re-run **Option 3**. You will be offered the chance to resume from `kiwix_resume_update.txt`.
+- Otherwise re-run **Option 2**. The script detects `.partial` files and resumes automatically.
+
+### The server crawl returns zero files
+
+1. Confirm internet connectivity.
+2. Confirm the script version is **v20260822a or later** (older versions still pointed at `download.kiwix.org/zim/`, which no longer has a parseable listing).
+3. Look for the `WARNING: No Apache <pre> listing found…` message — that indicates a further site-layout change; update `BASE_URL` / `MIRRORS` in the script.
 
 ### The server crawl is very slow
 
-The script scans each subdirectory of `download.kiwix.org/zim/` in sequence. This is normal — the server has hundreds of directories. The scan typically takes 1–3 minutes.
+The script scans each category subdirectory in sequence. This is normal — the server has many directories. A full scan typically takes one to a few minutes depending on network conditions.
 
 ### I see "Found 0 update(s)" but I know there are new files
 
-Check that your on-disk files have dates in their filenames (e.g. `_2026-02`). Option 3 compares content dates parsed from filenames. Files without a recognisable date pattern will not be compared correctly.
+Check that your on-disk files have dates in their filenames (e.g. `_2026-07`). Option 3 compares content dates parsed from filenames. Files without a recognisable `YYYY-MM` date pattern will not be compared correctly.
 
-### Torrent downloads show 0 seeds
+### Torrent downloads show 0 seeds / peers
 
-Wait a minute or two — peers are discovered gradually. If seeds remain at 0 for several minutes, the torrent may be poorly seeded. The script will fall back to HTTP if the torrent stalls.
+Wait a minute or two — peers are discovered gradually. If activity remains at zero for several minutes, the torrent may be poorly seeded. The script will fall back to HTTP if the torrent path fails.
 
 ### A file ended up in zims/corrupt/
 
-The file failed integrity verification. You can attempt to re-download it by running Option 3, which will detect that the completed `.zim` is missing for that group and offer it as an update. Alternatively, delete the corrupt file manually and run Option 2 to re-download it.
+The file failed integrity verification. You can attempt to re-download it by running Option 3 (which will treat the missing completed `.zim` as needed) or by deleting the corrupt entry and running Option 2.
 
 ### How do I see what files are scheduled for download?
 
-Open `kiwix_english_best.txt` in any text editor. Each line lists a filename, its human-readable size, byte size, HTTP URL, and torrent URL.
+Open `kiwix_english_best.txt` in any text editor. Each line lists a filename, its human-readable size, byte size, HTTP URL, and torrent URL (when available).
+
+### Space check says I need more room than expected
+
+The required-space calculation treats incomplete / missing files as needing their full catalogued size, plus a safety buffer (default 10 GiB or 10% of remaining, whichever is larger). Completed files on disk contribute zero additional required space.
+
+---
+
+## License
+
+MIT.

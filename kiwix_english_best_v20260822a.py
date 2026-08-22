@@ -2,11 +2,17 @@
 # -*- coding: utf-8 -*-
 """
 Kiwix English ZIM Selector + Downloader + Update Checker
-Version: v20260403a
+Version: v20260822a
+
+NOTE (2026-08): download.kiwix.org/zim/ now redirects to the Hub marketing
+site (no Apache index). BASE_URL uses lb.download.kiwix.org which still
+serves classic directory listings. Category subdirs remain usable.
+
 EXCLUSION RULES:
 - Gutenberg: keep ONLY gutenberg_en_all_*
 - Wikipedia: keep ONLY wikipedia_en_all_maxi_*
 - Wiktionary: keep wiktionary_en_all_nopic_* (only comprehensive English version)
+- FreeCodeCamp: keep ONLY freecodecamp_en_all_* (it subsumes all subset ZIMs)
 - Drop all other _nopic_*, speedtest_*, wikivoyage_en_europe_*, etc.
 """
 
@@ -49,8 +55,8 @@ except ImportError:
     tqdm = DummyTqdm
 
 # ==================== CONFIGURATION ====================
-VERSION = "v20260405a"
-BASE_URL = "https://download.kiwix.org/zim/"
+VERSION = "v20260822a"
+BASE_URL = "https://lb.download.kiwix.org/zim/"
 USER_AGENT = f"Kiwix-English-ZIM-Downloader/{VERSION}"
 DELAY = 0.8
 MAX_DEPTH = 4
@@ -70,7 +76,8 @@ TOTAL_BAR_REFRESH_SECONDS = 0.8   # Smoother updates
 SHUTDOWN_GRACE_SECONDS = 2.0
 
 MIRRORS = [
-    "https://download.kiwix.org/zim/",
+    "https://lb.download.kiwix.org/zim/",          # primary — still serves classic Apache indexes
+    "https://download.kiwix.org/zim/",             # public alias (redirects at root; usable for file GETs)
     "https://ny.mirror.driftle.ss/kiwix/zim/",
     "https://de.mirror.driftle.ss/kiwix/zim/",
     "https://fr.mirror.driftle.ss/kiwix/zim/",
@@ -91,8 +98,7 @@ zimcheck_warning_shown = False
 stop_event = threading.Event()
 active_downloads = {}
 progress_lock = threading.Lock()
-startup_lines = {}  # FIX 46: file_index -> startup message, printed in order before progress
-# FIX 9: Split into two counters so progress position and speed/ETA are
+startup_lines = {}
 # calculated from independent sources and can't interfere with each other.
 total_bytes_on_disk = 0      # seeded from partials at startup + all new bytes written;
                               # drives the progress bar position only
@@ -101,7 +107,6 @@ total_bytes_this_session = 0 # always starts at 0; only new bytes from this sess
 download_start_time = 0.0    # resets on checking->downloading transition; drives speed/ETA
 display_start_time  = 0.0    # never resets; drives the elapsed display in the progress bar
 verify_start_time   = 0.0    # set when first verification byte arrives; drives verify ETA
-# FIX 25: Flag set by download_torrent when a checking->downloading transition
 # is detected. The refresh thread resets total_bytes_this_session and
 # download_start_time atomically when it sees this flag.
 reset_session_clock = False
@@ -143,6 +148,14 @@ def should_exclude(filename):
     if '_nopic_' in lower: return True
     if 'wikivoyage_en_europe' in lower: return True
     if '_simple_all_' in lower and 'wikipedia' not in lower: return True
+    # Each subset (coding-interview-prep, javascript-algorithms-and-data-structures,
+    # project-euler, rosetta-code) is built from the same openZIM scraper with a
+    # subset of courses; freecodecamp_en_all_* is built with all courses combined.
+    # The subset ZIMs exist for bandwidth-limited or topic-specific deployments,
+    # but are fully redundant when freecodecamp_en_all_* is present.
+    # Whitelist _en_all_ first, then exclude every other freecodecamp_en_* variant.
+    if lower.startswith('freecodecamp_en_all_'): return False
+    if lower.startswith('freecodecamp_en_'): return True
     return False
 
 def has_all_maxi(filename):
@@ -174,7 +187,6 @@ def get_free_space_gb(path):
     return free_bytes / (1024 ** 3)
 
 def get_required_space_gb(items_to_download):
-    # FIX 23 (also): Do not use os.path.getsize() on .partial files to estimate
     # space already used -- libtorrent sparse allocation means the on-disk size
     # can be far smaller than actual downloaded content, causing the space check
     # to overestimate required space. Completed .zim files need 0 additional
@@ -248,6 +260,8 @@ def fetch_directory(url, depth=0, visited=None, collected=None):
             html = response.read().decode('utf-8', errors='ignore')
         pre_match = re.search(r'<pre>(.*?)</pre>', html, re.DOTALL | re.IGNORECASE)
         if not pre_match:
+            print(f"WARNING: No Apache <pre> listing found at {url}", file=sys.stderr)
+            print("  The site layout may have changed. Check BASE_URL / mirrors.", file=sys.stderr)
             time.sleep(DELAY)
             return collected
         pre_content = pre_match.group(1)
@@ -291,7 +305,6 @@ def select_best_per_group(all_files):
     selected = []
     for key, files in sorted(groups.items()):
         if not files: continue
-        # FIX 43: Sort by priority, then DATE (newest first), then size.
         # Previously size was ranked before date, so an older but slightly
         # larger file (e.g. devdocs_en_axios_2025-10 at 407 KiB) would beat
         # a newer but smaller file (devdocs_en_axios_2026-02 at 330 KiB),
@@ -372,7 +385,6 @@ def save_list(items, filename=LIST_FILE):
         f.write(f"# Generated: {now}\n")
         f.write(f"# Total files: {len(items)}\n")
         f.write(f"# Total size: {bytes_to_binary_human(total_bytes)}\n")
-        # FIX 52: size_human added as 2nd field (right after filename) for
         # readability when the file is opened in a text editor. size_bytes
         # (now field 3) is still used for all calculations.
         f.write("# Format: filename|size_human|size_bytes|url|torrent_url\n\n")
@@ -394,7 +406,6 @@ def load_list(path=LIST_FILE):
             if len(parts) >= 3:
                 fn = parts[0]
                 try:
-                    # FIX 52: New format: filename|size_human|size_bytes|url|torrent_url
                     # Old format: filename|size_bytes|url|torrent_url
                     # Detect by attempting to parse parts[1] as int:
                     # if it succeeds, it's the old format; if not, it's new.
@@ -481,7 +492,6 @@ def verify_zim_integrity(target_path, filename, via_torrent=False):
     # ZIM magic number: bytes 0-3 are 'Z','I','M','\x04'
     ZIM_MAGIC = b'\x5a\x49\x4d\x04'
 
-    # FIX 31: Torrent downloads skip zimcheck entirely.
     #
     # Why no zimcheck for torrents?
     #   libtorrent cryptographically verifies every piece against the SHA-1
@@ -621,7 +631,6 @@ def download_single(item, file_index, total_files, verbose=False):
             print(f"✓ Pre-existing file close enough ({bytes_to_binary_human(on_disk)} vs {bytes_to_binary_human(expected_bytes)}) — treating as complete")
             return True
     downloaded = os.path.getsize(partial_path) if os.path.exists(partial_path) else 0
-    # FIX 46: Collect startup line into the shared startup_lines dict so
     # download_list can print all startup lines in index order before any
     # progress output begins.
     if os.path.exists(partial_path):
@@ -643,13 +652,11 @@ def download_single(item, file_index, total_files, verbose=False):
     else:
         http_error = None
     if success:
-        # FIX 3: Rename .partial → .zim BEFORE the integrity check.
         if os.path.exists(partial_path):
             os.rename(partial_path, target_path)
         if verify_zim_integrity(target_path, filename, via_torrent=via_torrent):
             if os.path.exists(resume_path):
                 os.remove(resume_path)
-            # FIX 46: Set state to Completed so the refresh thread renders
             # one final "Completed | 100%" line before removing the entry.
             with progress_lock:
                 if filename in active_downloads:
@@ -668,7 +675,6 @@ def download_single(item, file_index, total_files, verbose=False):
     elif not stop_event.is_set():
         with progress_lock:
             active_downloads.pop(filename, None)
-        # FIX 48: Report the error reason alongside the partial file info.
         # The post-run summary handles the resume instruction.
         error_str = f" — {http_error}" if http_error else ""
         if os.path.exists(partial_path):
@@ -681,7 +687,6 @@ def download_single(item, file_index, total_files, verbose=False):
     return False
 
 def download_http(original_url, target_path, expected_bytes, downloaded, verbose=False, file_index=0):
-    # FIX 4: Use original_url as the immutable base; never mutate it across retries.
     if stop_event.is_set():
         return False, None
     retries = HTTP_RETRIES
@@ -692,7 +697,6 @@ def download_http(original_url, target_path, expected_bytes, downloaded, verbose
     for attempt in range(retries):
         if stop_event.is_set():
             return False, None
-        # FIX 4: Substitute mirror into the original URL each time, not the
         # already-substituted URL from the previous attempt.
         mirror_base = MIRRORS[mirror_index % len(MIRRORS)]
         url = original_url.replace("https://download.kiwix.org/zim/", mirror_base)
@@ -701,10 +705,8 @@ def download_http(original_url, target_path, expected_bytes, downloaded, verbose
             headers = {'User-Agent': USER_AGENT}
             if downloaded > 0:
                 headers['Range'] = f'bytes={downloaded}-'
-            # FIX 1: Determine mode here, inside the loop, so a 416 reset of
             # `downloaded` is respected before we open the file.
             mode = 'ab' if downloaded > 0 else 'wb'
-            # FIX 2: Split timeout into (connect, read). The read timeout only
             # applies between chunks, so 300 s gives slow mirrors plenty of
             # headroom without hanging forever on a dead connection.
             with requests.get(url, headers=headers, stream=True,
@@ -719,15 +721,12 @@ def download_http(original_url, target_path, expected_bytes, downloaded, verbose
                         if chunk:
                             f.write(chunk)
                             written += len(chunk)
-                            # FIX 9: HTTP bytes are always fresh network bytes,
                             # so increment both counters.
                             total_bytes_on_disk += len(chunk)
                             total_bytes_this_session += len(chunk)
-                            # FIX 13: Update active_downloads so the refresh
                             # thread can include this file in the verbose block.
                             elapsed_w = time.time() - write_start
                             rate_kbs = (written / elapsed_w / 1024) if elapsed_w > 0 else 0
-                            # FIX 42: Clamp to 100.0 -- if expected_bytes is a
                             # rounded approximation the true file can be slightly
                             # larger, producing >100% which looks wrong in output.
                             pct = min(100.0, ((downloaded + written) / expected_bytes * 100) if expected_bytes > 0 else 0)
@@ -743,7 +742,6 @@ def download_http(original_url, target_path, expected_bytes, downloaded, verbose
                                     'checking': False,
                                     'file_index': file_index,
                                 }
-                # FIX 13: No independent verbose prints; refresh thread handles output.
             final_size = os.path.getsize(target_path)
             tolerance = max(1024 * 1024, expected_bytes // 200)
             if expected_bytes > 0 and abs(final_size - expected_bytes) <= tolerance:
@@ -753,7 +751,6 @@ def download_http(original_url, target_path, expected_bytes, downloaded, verbose
                 return False, last_error
         except requests.exceptions.HTTPError as e:
             if e.response.status_code == 416:
-                # FIX 1: Reset downloaded so the next attempt opens with 'wb'
                 # and starts fresh, not 'ab' on a deleted file.
                 downloaded = 0
                 if os.path.exists(target_path):
@@ -818,21 +815,19 @@ def download_torrent(torrent_url, target_path, expected_bytes, downloaded, expec
             s = h.status()
             state_str = str(s.state)
 
-            # FIX 24+25: On the checking->downloading transition, absorb the
             # total_wanted_done jump by resetting last_reported, AND signal the
             # refresh thread to reset the session clock and byte counter so that
             # elapsed time and speed start fresh from this moment.
             if (prev_state_str in CHECKING_STATES and
                     state_str not in CHECKING_STATES):
                 last_reported = int(s.total_wanted_done)
-                reset_session_clock = True   # FIX 25: tell refresh thread to reset
+                reset_session_clock = True
             prev_state_str = state_str
 
             downloaded_this_tick = int(s.total_wanted_done - last_reported)
             if downloaded_this_tick > 0:
                 last_reported = s.total_wanted_done
                 total_bytes_on_disk += downloaded_this_tick
-                # FIX 30: Record when the first verification byte arrives so
                 # the refresh thread can calculate a verification-phase ETA.
                 if state_str in CHECKING_STATES and verify_start_time == 0.0:
                     verify_start_time = time.time()
@@ -847,7 +842,6 @@ def download_torrent(torrent_url, target_path, expected_bytes, downloaded, expec
                     'checking': state_str in CHECKING_STATES,
                     'file_index': file_index,
                 }
-            # FIX 13: Verbose output is now owned entirely by the refresh
             # thread, which prints all file lines + total bar as one atomic
             # block. No independent prints here.
             time.sleep(1)
@@ -891,17 +885,14 @@ def total_bar_refresh_thread(pbar, total_expected, stop_event, verbose, total_fi
     # Track whether we just transitioned out of verification so we can
     # print a blank line separator before the first download block.
     pending_transition_blank = False
-    # FIX 28: Only honour the first checking->downloading transition.
     session_clock_reset_done = False
 
-    # FIX 46: Wait until all startup lines are collected, print them in
     # file-index order, then print a blank line before progress begins.
     startup_printed = False
 
     while not stop_event.is_set():
         now = time.time()
 
-        # FIX 46: Once all threads have deposited their startup line, print
         # them in order and then proceed to normal progress display.
         if not startup_printed and total_files > 0:
             with progress_lock:
@@ -915,7 +906,6 @@ def total_bar_refresh_thread(pbar, total_expected, stop_event, verbose, total_fi
                 time.sleep(0.1)
                 continue
 
-        # FIX 25+28: On the first checking->downloading transition, reset the
         # speed/ETA clock and session bytes. Ignore all subsequent transitions.
         if reset_session_clock:
             reset_session_clock = False   # always clear the flag
@@ -925,7 +915,6 @@ def total_bar_refresh_thread(pbar, total_expected, stop_event, verbose, total_fi
                 pending_transition_blank = True
                 session_clock_reset_done = True
 
-        # FIX 26: display_elapsed counts from session start (never resets);
         # speed_elapsed resets on transition (drives speed/ETA only).
         display_elapsed = now - display_start_time if display_start_time > 0 else 0.0
         speed_elapsed   = now - download_start_time if download_start_time > 0 else 0.0
@@ -947,7 +936,6 @@ def total_bar_refresh_thread(pbar, total_expected, stop_event, verbose, total_fi
             eta_str = f"{int(eta_sec//3600):02d}:{int((eta_sec%3600)//60):02d}:{int(eta_sec%60):02d}"
             postfix_str = f"{elapsed_str}, {speed_str}, ETA={eta_str}"
         elif total_bytes_this_session == 0 and verify_start_time > 0 and total_bytes_on_disk > 0:
-            # FIX 30: Verification phase: estimate ETA from verification
             # throughput (bytes verified per second since verification began).
             verify_elapsed = now - verify_start_time
             if verify_elapsed > 3.0:
@@ -961,7 +949,6 @@ def total_bar_refresh_thread(pbar, total_expected, stop_event, verbose, total_fi
         else:
             postfix_str = f"{elapsed_str}, ETA=?:??:??"
 
-        # FIX 27: Build pbar_str manually, bypassing tqdm's postfix rendering
         # which prepends a spurious ", " before our postfix when the bar_format
         # bracket contains no other fields. We set postfix to empty and append
         # our own bracket content directly to tqdm's base bar string.
@@ -978,17 +965,14 @@ def total_bar_refresh_thread(pbar, total_expected, stop_event, verbose, total_fi
             idx = base_bar.rfind("[")
             pbar_str = (base_bar[:idx] + f"[{postfix_str}]") if idx >= 0 else base_bar
 
-        # FIX 15: Do NOT call pbar.refresh() here.
 
         if now - last_print >= TOTAL_BAR_REFRESH_SECONDS:
             with progress_lock:
                 snapshot = list(active_downloads.items())
 
-            # FIX 46: Sort by file_index so progress lines always appear in
             # the same order as the startup ↓/↻ lines.
             snapshot.sort(key=lambda kv: kv[1].get('file_index', 0))
 
-            # FIX 27: Skip the print cycle entirely if there are no active
             # downloads yet -- this suppresses the bare "Total progress: 0%"
             # line that appeared before any files had started.
             if not snapshot:
@@ -1055,7 +1039,6 @@ def download_list(items, verbose=False, cleanup_after_each=False, resume_file=No
     verify_start_time   = 0.0   # set when first verification byte arrives
     reset_session_clock = False
 
-    # FIX 23: Only seed total_bytes_on_disk from completed .zim files, whose
     # size is reliable. Do NOT seed from .partial files -- libtorrent may use
     # sparse allocation or a small stub file, so os.path.getsize() on a .partial
     # can return a tiny value (e.g. 5 MiB) even when 62% of the content has been
@@ -1090,11 +1073,9 @@ def download_list(items, verbose=False, cleanup_after_each=False, resume_file=No
 
     stop_event.clear()
 
-    # FIX 46: Reset startup_lines so this session starts fresh.
     global startup_lines
     startup_lines = {}
 
-    # FIX 25: Remove {elapsed} from bar_format. tqdm's internal elapsed timer
     # starts when pbar is created (at the beginning of download_list) and cannot
     # be reset. We render our own elapsed in the postfix, calculated from
     # download_start_time which resets at the checking->downloading transition.
@@ -1102,7 +1083,6 @@ def download_list(items, verbose=False, cleanup_after_each=False, resume_file=No
         "{desc}: {percentage:3.0f}%|{bar}| {n_fmt}/{total_fmt} "
         "[{postfix}]"
     )
-    # FIX 15: In non-verbose mode, route tqdm's output to a null sink so any
     # internal tqdm writes (e.g. from pbar.close()) can't reach the terminal
     # and produce a rogue second bar line outside our controlled block.
     # In verbose mode tqdm writes via str(pbar) only, so the sink is used there
@@ -1122,7 +1102,6 @@ def download_list(items, verbose=False, cleanup_after_each=False, resume_file=No
         def wrapped_download(item, idx):
             success = download_single(item, idx, total_files, verbose=verbose)
             if success:
-                # FIX 42: Do NOT clamp total_bytes_on_disk to total_bytes_expected
                 # here. The old clamp was intended to absorb rounding overshoot for
                 # a single file, but it set the *global* total to 100% the moment
                 # any single file completed, pushing Total progress to 100% while
@@ -1146,7 +1125,6 @@ def download_list(items, verbose=False, cleanup_after_each=False, resume_file=No
         time.sleep(SHUTDOWN_GRACE_SECONDS)
         pbar_total.close()
 
-        # FIX 45: Flush stdout and print blank lines to break cleanly out of
         # the non-verbose in-place rewrite area before printing the post-run
         # summary. Without this, the ANSI cursor-up rewrite can overwrite the
         # first lines of the summary, leaving only the last line visible.
@@ -1162,7 +1140,6 @@ def download_list(items, verbose=False, cleanup_after_each=False, resume_file=No
         print(f"  - Corrupt files size: {stats['corrupt_size']}")
         print(f"  - Disk usage in ./zims/: {stats['total_folder_size']}")
 
-        # FIX 44+46: Report only genuine incomplete downloads — partials where
         # no corresponding .zim file exists (i.e. not yet renamed on completion).
         # Show remaining bytes (expected − on disk) and only show the resume
         # instruction when there are actual incomplete files.
@@ -1181,7 +1158,6 @@ def download_list(items, verbose=False, cleanup_after_each=False, resume_file=No
             genuine_partials.append((f, on_disk, remaining))
 
         if genuine_partials:
-            # FIX 48: Write the resume file before printing the summary so the
             # instruction can accurately reference it.
             if resume_file:
                 resume_items_to_save = [
@@ -1244,7 +1220,6 @@ def cleanup_old_versions(downloaded_items):
                         print(f"Could not delete {local_file}: {e}")
 
 def check_for_updates():
-    # FIX 36: Base updates on files actually in zims/ rather than the list
     # file. The list file may be stale or out of sync with what's on disk.
     if not os.path.exists(ZIM_SUBFOLDER):
         print(f"No {ZIM_SUBFOLDER}/ folder found -- nothing to compare against.")
@@ -1286,7 +1261,6 @@ def check_for_updates():
         if key not in current_dict:
             continue
         curr = current_dict[key]
-        # FIX 41: Compare only content dates parsed from filenames.
         # The size threshold check has been removed -- server sizes come from
         # approximate Apache directory strings (e.g. "153M", "5.2G") which
         # parse to rounded values, while on-disk sizes are exact byte counts.
@@ -1309,7 +1283,6 @@ def check_for_updates():
 
 def cleanup_zims_directory():
     """Option 4: scan zims/ and delete older duplicate versions of each group."""
-    # FIX 37: Local-only cleanup. For each group key found in zims/, keep only
     # the file with the newest date and delete all older versions.
     if not os.path.exists(ZIM_SUBFOLDER):
         print(f"No {ZIM_SUBFOLDER}/ folder found.")
@@ -1333,7 +1306,6 @@ def cleanup_zims_directory():
         print("No duplicate versions found in zims/ -- nothing to clean up.")
         return
 
-    # FIX 53: Show a full preview of what will be kept and deleted, with
     # total space to be freed, before asking for confirmation.
     to_delete = []  # list of (fname, size) tuples
     print(f"\nDuplicate groups found: {len(duplicates)}\n")
@@ -1398,7 +1370,6 @@ def main():
             print("No English ZIM files found.")
             return
         best = select_best_per_group(all_eng)
-        # FIX 51: Save the full best list BEFORE filtering out already-present
         # files. The list file should always reflect the complete current best
         # selection from the server, not just the files that need downloading.
         # Also always save unconditionally — previously save was gated on a
@@ -1434,7 +1405,6 @@ def main():
             verbose = (verbose_choice == "y")
             download_list(to_download, verbose=verbose)
     elif choice == "2":
-        # FIX 47: Check for a resume file from a previous option 3 session first.
         using_resume_file = False
         if os.path.exists(RESUME_FILE):
             resume_items = load_list(RESUME_FILE)
@@ -1452,7 +1422,6 @@ def main():
         if not items:
             print("No list found.")
             return
-        # FIX 21: Use the same tolerance check as download_single when deciding
         # whether a file is already complete. The previous exact-size check
         # (getsize != item['size_bytes']) caused torrent-completed files whose
         # on-disk size differs slightly from the catalogued size to be re-added
@@ -1491,7 +1460,6 @@ def main():
         verbose_choice = get_valid_choice("\nVerbose output (detailed progress)? (y/n): ", ["y", "n"])
         verbose = (verbose_choice == "y")
         download_list(items_to_download, verbose=verbose)
-        # FIX 47: If we were resuming from a resume file and all items are now
         # complete, delete the resume file.
         if using_resume_file:
             still_incomplete = [
@@ -1504,7 +1472,6 @@ def main():
             else:
                 save_resume_file(still_incomplete)
     elif choice == "3":
-        # FIX 48: If a resume file from a previous option 3 session exists,
         # offer to resume it rather than re-crawling the server.
         if os.path.exists(RESUME_FILE):
             resume_items = load_list(RESUME_FILE)
@@ -1528,7 +1495,6 @@ def main():
                             return
                     verbose_choice = get_valid_choice("Verbose output (detailed progress)? (y/n): ", ["y", "n"])
                     verbose = (verbose_choice == "y")
-                    # FIX 49: Populate torrent_url before downloading.
                     add_torrent_urls(resume_items)
                     download_list(resume_items, verbose=verbose, cleanup_after_each=True,
                                   resume_file=RESUME_FILE)
@@ -1565,10 +1531,8 @@ def main():
         if download_choice == "y":
             verbose_choice = get_valid_choice("Verbose output (detailed progress)? (y/n): ", ["y", "n"])
             verbose = (verbose_choice == "y")
-            # FIX 49: Populate torrent_url before downloading so update
             # sessions use torrents where available, not just HTTP.
             add_torrent_urls(to_download)
-            # FIX 48: Pass resume_file so download_list writes/deletes it
             # inside the finally block and references it in the summary.
             download_list(to_download, verbose=verbose, cleanup_after_each=True,
                           resume_file=RESUME_FILE)
@@ -1602,7 +1566,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.update:
-        # FIX 50: Non-interactive update mode for cron jobs.
         # Mirrors option 3 logic but requires no user input.
         import sys
         print(f"Kiwix English ZIM Tool {VERSION} — non-interactive update mode")

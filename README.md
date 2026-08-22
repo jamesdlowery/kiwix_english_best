@@ -1,6 +1,8 @@
 # Kiwix English Best
 
-A Python script that automates the selection, downloading, and maintenance of the best available English-language [ZIM files](https://wiki.openzim.org/wiki/ZIM_file_format) from [download.kiwix.org](https://download.kiwix.org/zim/). ZIM files are compressed offline archives used by the [Kiwix](https://www.kiwix.org) reader to browse Wikipedia, Stack Exchange, Project Gutenberg, and hundreds of other resources without an internet connection.
+A Python script that automates the selection, downloading, and maintenance of the best available English-language [ZIM files](https://wiki.openzim.org/wiki/ZIM_file_format) from the [Kiwix download mirrors](https://lb.download.kiwix.org/zim/). ZIM files are compressed offline archives used by the [Kiwix](https://www.kiwix.org) reader to browse Wikipedia, Stack Exchange, Project Gutenberg, and hundreds of other resources without an internet connection.
+
+**Current version:** `v20260822a`
 
 ## Features
 
@@ -10,6 +12,8 @@ A Python script that automates the selection, downloading, and maintenance of th
 - Detects and downloads updates when newer versions appear on the server
 - Cleans up older duplicate versions automatically
 - Non-interactive **cron mode** (`-u` / `--update`) for automated scheduling
+- Binary size reporting (KiB / MiB / GiB / TiB) throughout
+- Tolerant “already complete” detection so near-identical on-disk sizes are not re-downloaded
 
 ## Requirements
 
@@ -30,13 +34,13 @@ sudo apt install python3-libtorrent
 ## Quick Start
 
 ```bash
-python3 kiwix_english_best.py
+python3 kiwix_english_best_v20260822a.py
 ```
 
 You'll see the interactive menu:
 
 ```
-Kiwix English ZIM Tool v20260405a
+Kiwix English ZIM Tool v20260822a
 
 1) Generate / download new best English ZIMs list
 2) Download / resume from existing best English ZIMs list
@@ -56,12 +60,34 @@ ZIM files are stored in a `zims/` subdirectory relative to the script.
 | **3** | Check for newer versions and new content groups; download updates with auto-cleanup of old versions |
 | **4** | Preview and remove older duplicate versions from the `zims/` directory |
 
+## Selection Rules (best-of-group)
+
+The crawler keeps only the most comprehensive English variant in each content group:
+
+| Category | Kept | Dropped |
+|---|---|---|
+| Wikipedia | `wikipedia_en_all_maxi_*` only | topic splits, `_mini_`, `_nopic_`, `_simple_all_`, `_top_*`, etc. |
+| Gutenberg | `gutenberg_en_all_*` only | all `gutenberg_en_lcc-*` letter splits |
+| Wiktionary | `wiktionary_en_all_nopic_*` (only comprehensive English option) | other nopic / partial variants |
+| FreeCodeCamp | `freecodecamp_en_all_*` only | topic subset ZIMs |
+| General | — | `speedtest_*`, `wikivoyage_en_europe_*`, most other `_nopic_*` |
+
+## Server layout note (August 2026)
+
+`https://download.kiwix.org/zim/` now redirects to the Kiwix Hub marketing site and no longer serves a classic Apache directory listing. This script therefore uses:
+
+```
+https://lb.download.kiwix.org/zim/
+```
+
+as its primary crawl base. Category subdirectories (`wikipedia/`, `gutenberg/`, etc.) remain fully available. If the layout changes again, the script prints a clear warning instead of silently returning zero files.
+
 ## Cron / Automated Updates
 
 Run non-interactively with `-u` or `--update`:
 
 ```bash
-python3 kiwix_english_best.py -u
+python3 kiwix_english_best_v20260822a.py -u
 ```
 
 - Exits silently if the `zims/` directory doesn't exist (e.g. encrypted volume not mounted)
@@ -71,7 +97,7 @@ python3 kiwix_english_best.py -u
 Example cron entry (every Sunday at 3:00 AM):
 
 ```
-0 3 * * 0  python3 /path/to/kiwix_english_best.py -u >> /path/to/kiwix_cron.log 2>&1
+0 3 * * 0  python3 /path/to/kiwix_english_best_v20260822a.py -u >> /path/to/kiwix_cron.log 2>&1
 ```
 
 ## File Reference
@@ -86,32 +112,12 @@ Example cron entry (every Sunday at 3:00 AM):
 
 ## Documentation
 
-Full user guide available in the repository in four formats:
+Full user guide available in multiple formats:
 
 - [`user_guide.md`](user_guide.md) — Markdown
-
-## Recommended Offline Resource Libraries
-
-Several popular prepper and survival-focused websites stand out for offering extensive collections of free downloadable materials — PDFs, manuals, guides, checklists, and military/survival documents. These are often hosted directly or curated to avoid sketchy third-party links, and many emphasize offline storage (e.g. on USB drives).
-
-Here are some of the most frequently recommended sites with large collections of downloadable content:
-
-- **[TruePrepper](https://trueprepper.com)** — Features a dedicated "Free Survival PDFs, Manuals, & Downloads" library with hundreds of hosted files, including military manuals, checklists, and survival guides. They host everything themselves for safe, direct downloads and regularly update the collection.
-
-- **[City Prepping](https://cityprepping.com)** — Offers a "Prepper's Free PDF Library" section with categorized free PDFs, including emergency quick guides, survival manuals, traditional skills resources, and links to more extensive collections. A solid starting point for building an offline electronic library.
-
-- **[The Prepared](https://theprepared.com)** — A highly regarded site for rational, research-based prepper advice, with checklists, guides, and downloadable resources. Community-focused and often recommended for practical, no-nonsense materials.
-
-Other notable mentions from prepper communities include:
-
-- Sites aggregating military and government manuals, such as those linked from **[Off Grid Survival](https://offgridsurvival.com)** or Seasoned Citizen Prepper archives, which point to large collections of free PDFs (e.g. Army Ranger Handbooks, FEMA guides).
-- **[Reddit r/PrepperFileShare](https://www.reddit.com/r/PrepperFileShare/)** — Community-driven shares where users post and discuss torrents, direct links, and massive e-libraries of survival PDFs.
-- Older but still referenced collections like **Survivor Library** and various forum download sections (e.g. [survivalistboards.com](https://www.survivalistboards.com)), though availability can vary — always verify current links.
-**[Ready.gov](https://www.ready.gov)** also offers free official government preparedness PDFs, including basic emergency plans and guides.
-
-Many preppers recommend downloading these resources now and storing them offline, as internet access may not always be reliable in an emergency. Always cross-check for the latest versions, as some older links evolve or move over time.
-
----
+- [`user_guide.docx`](user_guide.docx) — Microsoft Word
+- [`user_guide.pdf`](user_guide.pdf) — PDF
+- [`user_guide.odt`](user_guide.odt) — OpenDocument Text
 
 ## License
 
