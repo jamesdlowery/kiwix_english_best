@@ -1,6 +1,6 @@
 # Kiwix English Best — User Guide
 
-**Version:** v20260822a  
+**Version:** v20260822b  
 **Last Updated:** August 22, 2026
 
 ---
@@ -16,13 +16,14 @@
    - [Option 3 — Check for Updates](#option-3)
    - [Option 4 — Cleanup ZIMs Directory](#option-4)
 5. [Selection Rules](#selection-rules)
-6. [Non-Interactive Update Mode (Cron Jobs)](#non-interactive-mode)
-7. [File Reference](#file-reference)
-8. [Download Methods](#download-methods)
-9. [Progress Display](#progress-display)
-10. [Integrity Verification](#integrity-verification)
-11. [Server Layout Note (August 2026)](#server-layout-note)
-12. [Tips and Troubleshooting](#tips-and-troubleshooting)
+6. [Space Checks and Immediate Cleanup](#space-checks-and-immediate-cleanup)
+7. [Non-Interactive Update Mode (Cron Jobs)](#non-interactive-mode)
+8. [File Reference](#file-reference)
+9. [Download Methods](#download-methods)
+10. [Progress Display](#progress-display)
+11. [Integrity Verification](#integrity-verification)
+12. [Server Layout Note (August 2026)](#server-layout-note)
+13. [Tips and Troubleshooting](#tips-and-troubleshooting)
 
 ---
 
@@ -37,7 +38,8 @@ The script:
 - Supports resuming interrupted downloads
 - Verifies file integrity after download
 - Detects and downloads updates when newer versions are available on the server
-- Cleans up older duplicate versions to save disk space
+- **Deletes outdated versions immediately** after each replacement is verified (one file at a time, not at session end)
+- **Accounts for reclaimable disk space** when calculating required free space (subtracts size of old versions that will be replaced)
 - Reports all sizes in binary units (KiB / MiB / GiB / TiB) with two decimal places
 
 ---
@@ -71,13 +73,13 @@ sudo apt install python3-libtorrent
 Run the script interactively:
 
 ```bash
-python3 kiwix_english_best_v20260822a.py
+python3 kiwix_english_best_v20260822b.py
 ```
 
 You will see the main menu:
 
 ```
-Kiwix English ZIM Tool v20260822a
+Kiwix English ZIM Tool v20260822b
 
 1) Generate / download new best English ZIMs list
 2) Download / resume from existing best English ZIMs list
@@ -102,7 +104,8 @@ All ZIM files are stored in the `zims/` subdirectory relative to the script's lo
 2. Selects the best (newest date, then largest / highest priority) file per content group, applying the exclusion rules below
 3. Saves the complete best list to `kiwix_english_best.txt` — this always happens, even if all files are already present on disk
 4. Checks which files from the list are not yet downloaded (tolerant size match)
-5. If files are missing, shows a space check and prompts to download
+5. If files are missing, shows a space check (including reclaimable space from any older same-group files) and prompts to download
+6. After each successful download, immediately deletes any older version in the same group
 
 **Prompts:**
 
@@ -124,8 +127,9 @@ All ZIM files are stored in the `zims/` subdirectory relative to the script's lo
 1. Checks whether `kiwix_resume_update.txt` exists (left by a failed Option 3 session) — if so, offers to resume those incomplete update downloads first
 2. Otherwise loads `kiwix_english_best.txt`
 3. Filters out files already present on disk (using a size-tolerance check: max of 50 MiB or 5% of expected size)
-4. Shows a space check for remaining files
+4. Shows a space check for remaining files (gross size, reclaimable from old versions, net + buffer)
 5. Downloads any incomplete or missing files, resuming `.partial` files where they exist
+6. After each successful download, immediately deletes any older version in the same group
 
 **Prompts:**
 
@@ -148,8 +152,9 @@ All ZIM files are stored in the `zims/` subdirectory relative to the script's lo
 2. **Crawls the server** and compares the best available version of each group against what is on disk (using content date from filenames)
 3. **Reports** the number of updates (newer versions of files you already have) and new groups (content you don't have yet), with sizes
 4. **Checks for torrent availability** for each file to download
-5. **Downloads** updates and new groups with per-file cleanup of the old version immediately after each new file completes verification
-6. **Saves a resume file** (`kiwix_resume_update.txt`) if any downloads fail, so they can be resumed by running Option 3 again
+5. **Shows a space check** that subtracts reclaimable space from outdated files that will be replaced
+6. **Downloads** updates and new groups; **deletes each outdated predecessor immediately** after its replacement is verified (one file at a time, not at session end)
+7. **Saves a resume file** (`kiwix_resume_update.txt`) if any downloads fail, so they can be resumed by running Option 3 again
 
 **Prompts:**
 
@@ -162,14 +167,14 @@ All ZIM files are stored in the `zims/` subdirectory relative to the script's lo
 **Important notes:**
 
 - Option 3 uses **torrent downloads** where available, falling back to HTTP
-- Cleanup of the old version happens **immediately** after each file is verified — so if the session is interrupted, already-completed updates are cleaned up
+- Cleanup of the old version happens **immediately** after each file is verified — so if the session is interrupted, already-completed updates have already freed their old space
 - If any downloads fail, `kiwix_resume_update.txt` is written automatically. Next time you run Option 3, you'll be offered the choice to resume it
 
 ---
 
 ### Option 4 — Cleanup ZIMs Directory {#option-4}
 
-**When to use:** If you have accumulated older duplicate versions of ZIM files (e.g. after manually downloading without using Option 3's auto-cleanup).
+**When to use:** If you have accumulated older duplicate versions of ZIM files (e.g. after manually copying files without using the script’s auto-cleanup).
 
 **What it does:**
 
@@ -230,6 +235,46 @@ Within a group, files are ranked by: selection priority → content date (newer 
 
 ---
 
+## Space Checks and Immediate Cleanup
+
+### Space check breakdown
+
+Before every download session (Options 1, 2, 3, and cron mode), the script reports:
+
+| Line | Meaning |
+|---|---|
+| **Download size (gross)** | Bytes still to write for incomplete or missing files |
+| **Reclaimed from old versions** | On-disk size of same-group files that will be deleted when replacements succeed (lists filenames) |
+| **Required (net + buffer)** | `max(0, gross − reclaimed) + safety buffer` (default 10 GiB, or 10% of net, whichever is larger) |
+| **Available** | Free space on the volume holding `zims/` |
+
+Example:
+
+```
+Space check for updates:
+  Files to download: 3
+  Download size (gross): ~669.90 GiB
+  Reclaimed from old versions: ~612.00 GiB (2 file(s))
+    - gutenberg_en_all_2025-11.zim (206.00 GiB) → replaced by gutenberg_en_all_2026-03.zim
+    - wikipedia_en_all_maxi_2026-01.zim (406.00 GiB) → replaced by wikipedia_en_all_maxi_2026-07.zim
+  Required (net + 10 GiB buffer): ~67.90 GiB
+  Available: ~1.08 TiB
+```
+
+If there are no older versions to replace, the reclaim line shows `none`.
+
+### Immediate per-file cleanup
+
+After **each** successful download and integrity verification — in any menu option — the script deletes older same-group `.zim` files **immediately**, without waiting for the rest of the batch:
+
+```
+  Removed old version: gutenberg_en_all_2025-11.zim (freed 206.00 GiB)
+```
+
+Concurrent downloads (default max 4) each free their own predecessor when they finish. Peak concurrent usage can temporarily exceed the *net* figure while several large files are in flight before their old counterparts are removed; the safety buffer and the warning text on the insufficient-space prompt reflect that.
+
+---
+
 ## Non-Interactive Update Mode (Cron Jobs) {#non-interactive-mode}
 
 The script supports a fully non-interactive update mode suitable for automated scheduling via cron or any task scheduler.
@@ -237,9 +282,9 @@ The script supports a fully non-interactive update mode suitable for automated s
 ### Usage
 
 ```bash
-python3 kiwix_english_best_v20260822a.py -u
+python3 kiwix_english_best_v20260822b.py -u
 # or
-python3 kiwix_english_best_v20260822a.py --update
+python3 kiwix_english_best_v20260822b.py --update
 ```
 
 ### Behaviour
@@ -247,6 +292,7 @@ python3 kiwix_english_best_v20260822a.py --update
 - **Exits silently** (exit code 0) if the `zims/` directory does not exist — this prevents cron from sending failure emails when the storage volume is not mounted (e.g. VeraCrypt volume not unlocked)
 - If `kiwix_resume_update.txt` exists, resumes the incomplete session
 - Otherwise crawls the server and downloads all updates and new groups
+- Applies the same reclaimable-space calculation and immediate per-file cleanup as interactive mode
 - Non-verbose output (clean for log files)
 - Exits with code 1 if there is insufficient disk space or the server crawl fails
 
@@ -255,7 +301,7 @@ python3 kiwix_english_best_v20260822a.py --update
 To run every Sunday at 3:00 AM and log output:
 
 ```bash
-0 3 * * 0  python3 /path/to/kiwix_english_best_v20260822a.py -u >> /path/to/kiwix_cron.log 2>&1
+0 3 * * 0  python3 /path/to/kiwix_english_best_v20260822b.py -u >> /path/to/kiwix_cron.log 2>&1
 ```
 
 **Important:** If your ZIM files are on an encrypted volume (e.g. VeraCrypt), the volume must already be mounted when the cron job runs. The script will exit gracefully if it is not.
@@ -300,7 +346,7 @@ The progress display shows status, percentage, speed, and peer counts. Torrent d
 
 If no torrent is available, or if the torrent download fails, the script falls back to direct HTTP download from the configured mirrors. Resume is supported via HTTP Range requests — interrupted downloads pick up from the byte offset already on disk.
 
-Default concurrency is **4** parallel downloads. Space checks include a safety buffer (default 10 GiB, or 10% of remaining required size, whichever is larger).
+Default concurrency is **4** parallel downloads. Space checks use the net-after-reclaim figure plus a safety buffer (default 10 GiB, or 10% of net, whichever is larger).
 
 ---
 
@@ -311,9 +357,15 @@ Default concurrency is **4** parallel downloads. Space checks include a safety b
 Each active download gets its own status line. A total progress bar tracks cumulative bytes downloaded versus the session total, with a byte-based ETA:
 
 ```
-gutenberg_en_all_2025-11.zim - downloading | 12.4% | 5.2 MB/s | Peers: 11
+gutenberg_en_all_2026-03.zim - downloading | 12.4% | 5.2 MB/s | Peers: 11
 khanacademy_en_all_2023-03.zim - downloading | 3.1% | 2.1 MB/s | Peers: 8
 Total progress:  4%|▍ | 24.5G/609G [00:12:41, 780MB/s, ETA=01:15:22]
+```
+
+When an update finishes, you may also see:
+
+```
+  Removed old version: gutenberg_en_all_2025-11.zim (freed 206.00 GiB)
 ```
 
 ### Non-Verbose Mode
@@ -328,7 +380,7 @@ After every download session, a summary is printed with good / corrupt counts an
 
 ## Integrity Verification
 
-After every successful download, the file is verified before being counted as complete:
+After every successful download, the file is verified before being counted as complete (and before any old version is deleted):
 
 | Download Method | Verification |
 |---|---|
@@ -341,7 +393,7 @@ After every successful download, the file is verified before being counted as co
 zimcheck -I yourfile.zim
 ```
 
-Files that fail verification are moved to `zims/corrupt/` and logged to `kiwix_download_failures.log`.
+Files that fail verification are moved to `zims/corrupt/` and logged to `kiwix_download_failures.log`. Failed downloads do **not** trigger deletion of the previous good version.
 
 ---
 
@@ -374,6 +426,7 @@ and returns an empty result set instead of failing silently.
 
 - If the failure happened during an **Option 3** update session, re-run **Option 3**. You will be offered the chance to resume from `kiwix_resume_update.txt`.
 - Otherwise re-run **Option 2**. The script detects `.partial` files and resumes automatically.
+- Already-completed replacements in that session will already have had their old versions deleted.
 
 ### The server crawl returns zero files
 
@@ -395,7 +448,7 @@ Wait a minute or two — peers are discovered gradually. If activity remains at 
 
 ### A file ended up in zims/corrupt/
 
-The file failed integrity verification. You can attempt to re-download it by running Option 3 (which will treat the missing completed `.zim` as needed) or by deleting the corrupt entry and running Option 2.
+The file failed integrity verification. The previous good version (if any) was **not** deleted. You can attempt to re-download by running Option 3 or by deleting the corrupt entry and running Option 2.
 
 ### How do I see what files are scheduled for download?
 
@@ -403,7 +456,11 @@ Open `kiwix_english_best.txt` in any text editor. Each line lists a filename, it
 
 ### Space check says I need more room than expected
 
-The required-space calculation treats incomplete / missing files as needing their full catalogued size, plus a safety buffer (default 10 GiB or 10% of remaining, whichever is larger). Completed files on disk contribute zero additional required space.
+The required figure is **net** after reclaiming old versions, plus a safety buffer. Peak concurrent usage (up to 4 parallel downloads) can still briefly exceed the net figure while new files are writing and old ones have not yet been deleted. If the drive is truly tight, reduce concurrent downloads or free space manually before starting.
+
+### When are old files actually deleted?
+
+Immediately after each replacement finishes downloading **and** passes integrity verification — one file at a time, as that worker completes. The script does **not** wait until the entire download batch is finished.
 
 ---
 
